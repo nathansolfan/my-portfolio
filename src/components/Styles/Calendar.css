@@ -1,7 +1,41 @@
-/* Calendar.module.css */
+/* Calendar.css */
 .calendar-container {
-    text-align: center;
-    padding: 20px;
-    background-color: #561212;
-  }
- 
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.calendar-nav {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.month-year {
+  font-size: 1.5em;
+  color: #333;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7 days a week */
+  gap: 5px;
+}
+
+.calendar-day {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+/* Add a hover effect for days */
+.calendar-day:hover {
+  background-color: #eee;
+  cursor: pointer;
+}

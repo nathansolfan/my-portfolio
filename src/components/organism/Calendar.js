@@ -41,10 +41,12 @@ export default function Calendar() {
 
   return (
     <div className="calendar-container">
-      <button onClick={handlePrevMonth}>Prev</button>
-      <span>{monthYearFormat}</span>
-      <button onClick={handleNextMonth}>Next</button>
       <div>
+        <button onClick={handlePrevMonth}>Prev</button>
+        <span className="month-year">{monthYearFormat}</span>
+        <button onClick={handleNextMonth}>Next</button>
+      </div>
+      <div className="calendar-grid">
         {days.map((day) => (
           <div key={day.toISOString()}>{day.getDate()}</div>
         ))}
