@@ -5,7 +5,7 @@
   background-color: #f8f8f8;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 80vw;  /* Adjust width based on viewport width */
+  width: 90%;  /* Adjust width based on viewport width */
   max-width: 500px;  /* Still cap the max width for very large screens */
   margin: 20px auto;
 }
@@ -17,8 +17,23 @@
   align-items: center;
 }
 
+.calendar-nav button {
+  padding: 10px 20px;
+  font-size: 16px;  /* Larger font size for better readability */
+  background-color: #007bff;  /* A friendly blue */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;  /* Smooth transition for hover effect */
+}
+
+.calendar-nav button:hover {
+  background-color: #0056b3;  /* Darker blue on hover */
+}
+
 .month-year {
-  font-size: 1.5em; /* Consider using vw for smaller screens if necessary */
+  font-size: 32px; /* Consider using vw for smaller screens if necessary */
   color: #333;
 }
 
@@ -29,10 +44,14 @@
 }
 
 .calendar-day {
-  padding: 1vw;  /* Dynamic padding that adjusts with viewport */
+  padding: 15px;  /* Increased padding for better touch targets on mobile */
   background-color: #fff;
   border: 1px solid #ddd;
-  min-height: 50px;  /* Ensure that cells have a minimum height */
+  min-height: 50px;  /* Increased minimum height for a more square look */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
 }
 
 /* Hover effect for days */

@@ -3,6 +3,7 @@ import "../Styles/Calendar.css";
 
 export default function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedDate, setSeletecDate] = useState(null);
 
   const getMonthDays = (date) => {
     const startDay = new Date(date.getFullYear(), date.getMonth(), 1);
@@ -39,6 +40,12 @@ export default function Calendar() {
     year: "numeric",
   });
 
+  /* select*/
+  const handleDateClick = (day) => {
+    setSeletecDate(day);
+    console.log("Selected date:", day.toLocaleDateString());
+  };
+
   return (
     <div className="calendar-container">
       <div className="calendar-nav">
@@ -48,7 +55,19 @@ export default function Calendar() {
       </div>
       <div className="calendar-grid">
         {days.map((day, index) => (
-          <div key={index} className="calendar-day">
+          /* <div key={index} className="calendar-day">
+            {day.getDate()}
+          </div>
+*/
+          <div
+            key={index}
+            className={`calendar-day ${
+              selectedDate && day.toISOString() === selectedDate.toISOString()
+                ? "selected"
+                : ""
+            }`}
+            onClick={() => handleDateClick(day)}
+          >
             {day.getDate()}
           </div>
         ))}
