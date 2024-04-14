@@ -1,5 +1,6 @@
-import Header from "./components/templates/Header";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Header from "./components/templates/Header";
+import Calendar from "./components/organism/Calendar";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route exact path="/projects"></Route>
         <Route exact path="/contact"></Route>
       </Switch> */}
+      <Calendar />
 
       <footer></footer>
     </div>

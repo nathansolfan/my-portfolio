@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../Styles/Calendar.css";
 
 export default function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -15,13 +16,33 @@ export default function Calendar() {
   };
   const days = getMonthDays(currentDate);
 
-  const handlePrevMonth = () => {};
+  const handlePrevMonth = () => {
+    const newDate = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() - 1,
+      1
+    );
+    setCurrentDate(newDate);
+  };
 
-  const handleNextMonth = () => {};
+  const handleNextMonth = () => {
+    const newDate = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() + 1,
+      1
+    );
+    setCurrentDate(newDate);
+  };
+
+  const monthYearFormat = currentDate.toLocaleDateString("default", {
+    month: "long",
+    year: "numeric",
+  });
 
   return (
-    <div>
+    <div className="calendar-container">
       <button onClick={handlePrevMonth}>Prev</button>
+      <span>{monthYearFormat}</span>
       <button onClick={handleNextMonth}>Next</button>
       <div>
         {days.map((day) => (
