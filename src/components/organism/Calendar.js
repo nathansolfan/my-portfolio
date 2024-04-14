@@ -41,14 +41,16 @@ export default function Calendar() {
 
   return (
     <div className="calendar-container">
-      <div>
+      <div className="calendar-nav">
         <button onClick={handlePrevMonth}>Prev</button>
         <span className="month-year">{monthYearFormat}</span>
         <button onClick={handleNextMonth}>Next</button>
       </div>
       <div className="calendar-grid">
-        {days.map((day) => (
-          <div key={day.toISOString()}>{day.getDate()}</div>
+        {days.map((day, index) => (
+          <div key={index} className="calendar-day">
+            {day.getDate()}
+          </div>
         ))}
       </div>
     </div>

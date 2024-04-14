@@ -5,37 +5,38 @@
   background-color: #f8f8f8;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 90%;
-  max-width: 600px;
+  width: 80vw;  /* Adjust width based on viewport width */
+  max-width: 500px;  /* Still cap the max width for very large screens */
   margin: 20px auto;
 }
 
 .calendar-nav {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .month-year {
-  font-size: 1.5em;
+  font-size: 1.5em; /* Consider using vw for smaller screens if necessary */
   color: #333;
 }
 
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr); /* 7 days a week */
-  gap: 5px;
+  grid-template-columns: repeat(7, 1fr);  /* Flexibility with grid columns using 1fr */
+  gap: 2vw;  /* Use vw for gaps for consistent scaling */
 }
 
 .calendar-day {
-  padding: 10px;
+  padding: 1vw;  /* Dynamic padding that adjusts with viewport */
   background-color: #fff;
   border: 1px solid #ddd;
+  min-height: 50px;  /* Ensure that cells have a minimum height */
 }
 
-/* Add a hover effect for days */
+/* Hover effect for days */
 .calendar-day:hover {
-  background-color: #eee;
+  background-color: #ff8c00;
   cursor: pointer;
 }
