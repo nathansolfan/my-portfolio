@@ -43,6 +43,23 @@ export default function Calendar() {
   /* select*/
   const handleDateClick = (day) => {
     setSeletecDate(day);
+    // fetch
+    fetch("http://localhost/my-portfolio/backend/public/index.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ date: day.toISOString().slice(0, 10) }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => console.log("server response:", data))
+      .then((error) => console.error("Error", error));
+
     console.log("Selected date:", day.toLocaleDateString());
   };
 
