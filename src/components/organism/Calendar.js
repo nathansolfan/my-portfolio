@@ -4,6 +4,10 @@ import "../Styles/Calendar.css";
 export default function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSeletecDate] = useState(null);
+  const [selectedTime, setSeletecTime] = useState("");
+
+  // time
+  const timeSlots = ["Morning", "Afternoon", "Evening", "Night"];
 
   const getMonthDays = (date) => {
     const startDay = new Date(date.getFullYear(), date.getMonth(), 1);
@@ -89,6 +93,19 @@ export default function Calendar() {
           </div>
         ))}
       </div>
+      {selectedTime} && (<p>Select a time slot:</p>
+      {timeSlots.map((slot, index) => (
+        <button
+          key={index}
+          className={`time-slot ${
+            selectedTime === slot ? "selected-time" : ""
+          }`}
+          onClick={() => setSeletecTime(slot)}
+        >
+          {slot}
+        </button>
+      ))}
+      )
     </div>
   );
 }
