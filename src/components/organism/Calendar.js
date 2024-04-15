@@ -51,12 +51,6 @@ export default function Calendar() {
       },
       body: JSON.stringify({ date: day.toISOString().slice(0, 10) }),
     })
-      // .then((response) => {
-      //   if (!response.ok) {
-      //     throw new Error("Network response was not ok");
-      //   }
-      //   return response.json();
-      // })
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
