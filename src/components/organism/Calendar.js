@@ -87,8 +87,10 @@ export default function Calendar() {
           <div
             key={index}
             className={`calendar-day ${
-              selectedDate && day.toISOString() === selectedDate.toISOString()
-                ? "selected"
+              selectedDate &&
+              new Date(day).toISOString().slice(0, 10) ===
+                new Date(selectedDate).toISOString().slice(0, 10)
+                ? "selected-day"
                 : ""
             }`}
             onClick={() => handleDateClick(day)}
