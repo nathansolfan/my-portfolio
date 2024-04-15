@@ -4,5 +4,15 @@ USE `my-portfolio`;
 SELECT *
 FROM calendar -- @block 
     -- @block
-SELECT date_field
+SELECT email
 FROM calendar;
+-- 
+-- @block
+ALTER TABLE calendar
+ADD COLUMN time_slot VARCHAR(255),
+    ADD COLUMN name VARCHAR(255),
+    ADD COLUMN email VARCHAR(255),
+    ADD COLUMN phone VARCHAR(255),
+    ADD COLUMN comments TEXT;
+-- @block
+DESCRIBE calendar;

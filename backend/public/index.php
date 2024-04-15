@@ -16,20 +16,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $json_str = file_get_contents('php://input');
-    $data = json_decode($json_str);
-    $date = $data->date;
+    $data = json_decode(file_get_contents('php://input'), true);
+    if (isset($data['date'], $data['time'], $data['contactInfo'], $data['comment'])) {
 
-    try {
-        $query = "INSERT INTO calendar (date_field) VALUES (?)";
+        $query = "INSERT INTO calendar (date_field, time_slot, name, email, phone, comments) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $pdo->prepare($query);
-        $stmt->execute([$date]);
-        echo json_encode(['message' => 'Date saved successfully']);
-    } catch (PDOException $e) {
-        http_response_code(500);
-        echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
+        $stmt->execute([
+            $data['date'],
+            $data['time'],
+            $data['contactInfo']['name'],
+            $data['contactInfo']['email'],
+            $data['contactInfo']['phone'],
+            $data['comments']
+        ]);
+        echo json_encode(["message" => "Data saved successfully"]);
+    } else {
+        http_response_code(400);
+        echo json_encode(['error' => 'Invalid input']);
     }
 } else {
     http_response_code(405);
-    echo json_encode(['error' => 'Method not allowed']);
+    echo json_encode(['error' => 'Methodnot allowed']);
 }
