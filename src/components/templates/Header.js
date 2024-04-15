@@ -1,25 +1,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../Styles/Header.css";
 
 export default function Header() {
   return (
-    <header>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
+    <header className="header">
+      <nav className="navbar">
+        <ul className="nav-list">
+          <li className="nav-item">
+            <Link to="/" className="nav-link">
+              Home
+            </Link>
           </li>
-          <li>
-            <Link to="/about">About</Link>
+          <li className="nav-item">
+            <Link to="/about" className="nav-link">
+              About
+            </Link>
           </li>
-          <li>
-            <Link to="/projects">Projects</Link>
+          <li className="nav-item">
+            <Link to="/projects" className="nav-link">
+              Projects
+            </Link>
           </li>
-          <li>
-            <Link to="/contact">Contact</Link>
+          <li className="nav-item">
+            <Link to="/contact" className="nav-link">
+              Contact
+            </Link>
           </li>
-          <li>
-            <Link to="/calendar">Calendar</Link>
+          <li className="nav-item">
+            <Link to="/calendar" className="nav-link">
+              Calendar
+            </Link>
           </li>
         </ul>
       </nav>

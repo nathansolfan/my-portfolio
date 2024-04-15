@@ -66,8 +66,19 @@ export default function Calendar() {
         }
         return response.json();
       })
-      .then((data) => console.log("Server response:", data))
-      .catch((error) => console.error("Error:", error));
+      .then((data) => {
+        console.log("Server response:", data);
+        alert("Your appointment has been successfully saved!"); // Alert the user
+        // Reset all states
+        setSeletecDate(null);
+        setSeletecTime("");
+        setContactInfo({ name: "", email: "", phone: "" });
+        setComment("");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("An error occurred while saving your appointment."); // Alert the user about the error
+      });
   };
 
   return (

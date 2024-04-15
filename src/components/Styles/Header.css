@@ -1,0 +1,45 @@
+/* Header.css */
+.header {
+    background-color: #007bff; /* Blue background */
+    color: white;
+    padding: 10px 20px;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: center; /* Centering the navbar */
+  }
+  
+  .nav-list {
+    list-style: none; /* Removes default list styling */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px; /* Creates space between links */
+  }
+  
+  .nav-item {
+    padding: 5px 10px; /* Padding around each nav item */
+  }
+  
+  .nav-link {
+    color: white; /* Text color */
+    text-decoration: none; /* Removes underline from links */
+    font-size: 16px; /* Sets font size */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+  }
+  
+  .nav-link:hover, .nav-link:focus {
+    color: #ffdd57; /* Changes color on hover/focus */
+  }
+  
+  @media (max-width: 768px) {
+    .navbar {
+      justify-content: space-around; /* Adjust spacing on smaller screens */
+    }
+  
+    .nav-item {
+      padding: 10px; /* Larger touch targets on smaller screens */
+    }
+  }
+  
