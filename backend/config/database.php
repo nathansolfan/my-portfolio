@@ -13,7 +13,7 @@ $options = [
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     PDO::ATTR_EMULATE_PREPARES => false,
 ];
-
+// CONNECT DATABSE
 $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
 try {
     $pdo = new PDO($dsn, $username, $password, $options);

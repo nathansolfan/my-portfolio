@@ -18,8 +18,8 @@ export default function Header() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/projects" className="nav-link">
-              Projects
+            <Link to="/find-booking" className="nav-link">
+              List
             </Link>
           </li>
           <li className="nav-item">
