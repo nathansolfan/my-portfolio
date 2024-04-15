@@ -17,7 +17,6 @@ $options = [
 $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
 try {
     $pdo = new PDO($dsn, $username, $password, $options);
-    echo "Connected successfully";
 } catch (\PDOException $e) {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
