@@ -24,7 +24,7 @@ function BookingChange({ booking, onUpdate }) {
     onUpdate({
       ...booking,
       ...bookingData,
-      time: selectedTime,
+      time_slot: selectedTime,
     });
   };
 
@@ -38,7 +38,10 @@ function BookingChange({ booking, onUpdate }) {
         onClick={() => setDateSelectorVisible(true)}
         placeholder="Select Date"
       />
-      {dateSelectorVisible && <DateSelector onSelectDate={handleDateSelect} />}
+      <DateSelector
+        visible={dateSelectorVisible}
+        onSelectDate={handleDateSelect}
+      />
       {["Morning", "Afternoon", "Evening", "Night"].map((slot, index) => (
         <button
           key={index}
@@ -53,24 +56,32 @@ function BookingChange({ booking, onUpdate }) {
       <input
         type="text"
         value={bookingData.name}
-        onChange={(e) => handleChange("name", e.target.value)}
+        onChange={(e) =>
+          setBookingData((prev) => ({ ...prev, name: e.target.value }))
+        }
         placeholder="Name"
       />
       <input
         type="email"
         value={bookingData.email}
-        onChange={(e) => handleChange("email", e.target.value)}
+        onChange={(e) =>
+          setBookingData((prev) => ({ ...prev, email: e.target.value }))
+        }
         placeholder="Email"
       />
       <input
         type="tel"
         value={bookingData.phone}
-        onChange={(e) => handleChange("phone", e.target.value)}
+        onChange={(e) =>
+          setBookingData((prev) => ({ ...prev, phone: e.target.value }))
+        }
         placeholder="Phone"
       />
       <textarea
         value={bookingData.comments}
-        onChange={(e) => handleChange("comments", e.target.value)}
+        onChange={(e) =>
+          setBookingData((prev) => ({ ...prev, comments: e.target.value }))
+        }
         placeholder="Comments"
       />
       <button onClick={handleSubmit}>Update Booking</button>
