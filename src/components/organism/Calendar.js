@@ -83,32 +83,34 @@ export default function Calendar() {
 
   return (
     <div className="calendar-container">
-      <div className="calendar-nav">
-        <button onClick={handlePrevMonth}>Prev</button>
-        <span className="month-year">
-          {currentDate.toLocaleDateString("default", {
-            month: "long",
-            year: "numeric",
-          })}
-        </span>
-        <button onClick={handleNextMonth}>Next</button>
-      </div>
-      <div className="calendar-grid">
-        {days.map((day, index) => (
-          <div
-            key={index}
-            className={`calendar-day ${
-              selectedDate &&
-              new Date(day).toISOString().slice(0, 10) ===
-                new Date(selectedDate).toISOString().slice(0, 10)
-                ? "selected-day"
-                : ""
-            }`}
-            onClick={() => handleDateClick(day)}
-          >
-            {day.getDate()}
-          </div>
-        ))}
+      <div>
+        <div className="calendar-nav">
+          <button onClick={handlePrevMonth}>Prev</button>
+          <span className="month-year">
+            {currentDate.toLocaleDateString("default", {
+              month: "long",
+              year: "numeric",
+            })}
+          </span>
+          <button onClick={handleNextMonth}>Next</button>
+        </div>
+        <div className="calendar-grid">
+          {days.map((day, index) => (
+            <div
+              key={index}
+              className={`calendar-day ${
+                selectedDate &&
+                new Date(day).toISOString().slice(0, 10) ===
+                  new Date(selectedDate).toISOString().slice(0, 10)
+                  ? "selected-day"
+                  : ""
+              }`}
+              onClick={() => handleDateClick(day)}
+            >
+              {day.getDate()}
+            </div>
+          ))}
+        </div>
       </div>
       {selectedDate && (
         <>
