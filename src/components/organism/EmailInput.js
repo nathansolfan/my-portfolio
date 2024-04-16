@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import Calendar from "./Calendar"; // Ensure this component is correctly imported and set up
 
 export default function EmailInput() {
   const [email, setEmail] = useState("");
   const [bookingDetails, setBookingDetails] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [calendarVisible, setCalendarVisible] = useState(false);
+  const [selectedTime, setSelectedTime] = useState("");
+  const timeSlots = ["Morning", "Afternoon", "Evening", "Night"];
 
   const fetchBookingDetails = (email) => {
     setLoading(true);
@@ -27,7 +31,7 @@ export default function EmailInput() {
         console.error("Failed to load booking", error);
         setError("Failed to load booking");
         setLoading(false);
-        setBookingDetails([]); // Ensure it's always an array
+        setBookingDetails([]);
       });
   };
 
@@ -35,11 +39,6 @@ export default function EmailInput() {
     const updatedBookings = [...bookingDetails];
     updatedBookings[index][field] = value;
     setBookingDetails(updatedBookings);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetchBookingDetails(email);
   };
 
   const handleUpdate = (booking) => {
@@ -50,8 +49,13 @@ export default function EmailInput() {
       body: JSON.stringify(booking),
     })
       .then((response) => response.json())
-      .then((data) => alert("Booking updated successfully"))
+      .then(() => alert("Booking updated successfully"))
       .catch((error) => console.error("Error updating booking:", error));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetchBookingDetails(email);
   };
 
   return (
@@ -77,30 +81,44 @@ export default function EmailInput() {
             <input
               type="text"
               value={booking.date}
-              onChange={(e) => handleChange(index, "date", e.target.value)}
-              placeholder="Date"
+              readOnly // Make it read-only as we will use a Calendar component
+              onClick={() => setCalendarVisible(!calendarVisible)} // Toggle calendar visibility
+              placeholder="Select Date"
             />
-            <input
-              type="text"
+            {calendarVisible && (
+              <Calendar
+                selectedDate={new Date(booking.date)}
+                onDateSelect={(date) => {
+                  handleChange(index, "date", date.toISOString().slice(0, 10));
+                  setCalendarVisible(false);
+                }}
+              />
+            )}
+            <select
               value={booking.time}
               onChange={(e) => handleChange(index, "time", e.target.value)}
-              placeholder="Time"
-            />
+              placeholder="Time Slot"
+            >
+              {timeSlots.map((time, idx) => (
+                <option key={idx} value={time}>
+                  {time}
+                </option>
+              ))}
+            </select>
             <input
               type="text"
               value={booking.name}
               onChange={(e) => handleChange(index, "name", e.target.value)}
               placeholder="Name"
             />
-
             <input
-              type="text"
+              type="email"
               value={booking.email}
               onChange={(e) => handleChange(index, "email", e.target.value)}
               placeholder="Email"
             />
             <input
-              type="text"
+              type="tel"
               value={booking.phone}
               onChange={(e) => handleChange(index, "phone", e.target.value)}
               placeholder="Phone"
