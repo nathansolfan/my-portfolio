@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "../Styles/Calendar.css";
 
-function DateSelector({ onSelectDate }) {
+function DateSelector({ onSelectDate, visible }) {
   const [currentDate, setCurrentDate] = useState(new Date());
+  if (!visible) return null; // This line ensures the component only renders when visible is true.
 
   // Helper function to generate an array of days in the current month
   const getMonthDays = (date) => {

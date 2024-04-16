@@ -1,0 +1,102 @@
+/* General form and button styling for the entire application */
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 600px;
+}
+
+input[type="email"], input[type="text"], input[type="tel"], textarea {
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem; /* Consistent font size for readability */
+  background-color: #fff;
+}
+
+button {
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #007bff; /* Primary color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover, button:focus {
+  background-color: #0056b3;
+  outline: none;
+}
+
+/* Specific styles for the BookingChange component */
+.booking-container {
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+  
+}
+
+.booking-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.booking-item {
+  width: 100%; /* Ensures that input fields use the full width */
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Time slot buttons within the BookingChange component */
+.time-slot {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  margin: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s ease-in-out;
+  display: inline-block;
+}
+
+.time-slot.selected-time {
+  background-color: #007bff;
+  color: white;
+  transform: scale(1.1); /* Slightly enlarges the selected time slot */
+}
+
+/* Media queries for responsive layout adjustments */
+@media (max-width: 768px) {
+  .booking-box, form {
+    width: 95%;
+  }
+
+  input[type="email"], input[type="text"], input[type="tel"], textarea, button {
+    font-size: 0.9rem;
+  }
+}
+
+/* Styles for contact information and comments sections in BookingChange */
+.contact-info, .comments-section {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.contact-info input, .comments-section textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
