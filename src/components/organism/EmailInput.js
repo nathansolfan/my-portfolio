@@ -2,14 +2,13 @@ import React, { useState } from "react";
 
 export default function EmailInput() {
   const [email, setEmail] = useState("");
-  const [bookingDetails, setBookingDetails] = useState(null);
+  const [bookingDetails, setBookingDetails] = useState(null); // Initially null
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const fetchBookingDetails = (email) => {
     setLoading(true);
     setError(null);
-    // Make sure to replace "http://example.com/api/bookings" with your actual API endpoint
     const backendUrl = "http://localhost:8000/index.php";
     const queryParams = `?email=${encodeURIComponent(email)}`;
 
@@ -21,13 +20,15 @@ export default function EmailInput() {
         return response.json();
       })
       .then((data) => {
-        setBookingDetails(data);
+        // Ensure data is an array
+        setBookingDetails(Array.isArray(data) ? data : []);
         setLoading(false);
       })
       .catch((error) => {
         console.error("Failed to load booking", error);
         setError("Failed to load booking");
         setLoading(false);
+        setBookingDetails([]); // Ensure it's always an array
       });
   };
 
@@ -51,7 +52,7 @@ export default function EmailInput() {
 
       {loading && <div>Loading...</div>}
       {error && <div>{error}</div>}
-      {!loading && !error && bookingDetails.length > 0 && (
+      {!loading && !error && bookingDetails && bookingDetails.length > 0 && (
         <div>
           <h3>Booking Details:</h3>
           {bookingDetails.map((booking) => (
@@ -64,7 +65,7 @@ export default function EmailInput() {
           ))}
         </div>
       )}
-      {!loading && !error && bookingDetails.length === 0 && (
+      {!loading && !error && bookingDetails && bookingDetails.length === 0 && (
         <div>No booking details found.</div>
       )}
     </div>
