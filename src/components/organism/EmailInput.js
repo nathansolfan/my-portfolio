@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 export default function EmailInput() {
   const [email, setEmail] = useState("");
-  const [bookingDetails, setBookingDetails] = useState(null); // Initially null
+  const [bookingDetails, setBookingDetails] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -20,7 +20,6 @@ export default function EmailInput() {
         return response.json();
       })
       .then((data) => {
-        // Ensure data is an array
         setBookingDetails(Array.isArray(data) ? data : []);
         setLoading(false);
       })
@@ -32,9 +31,27 @@ export default function EmailInput() {
       });
   };
 
+  const handleChange = (index, field, value) => {
+    const updatedBookings = [...bookingDetails];
+    updatedBookings[index][field] = value;
+    setBookingDetails(updatedBookings);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     fetchBookingDetails(email);
+  };
+
+  const handleUpdate = (booking) => {
+    const backendUrl = "http://localhost:8000/index.php";
+    fetch(backendUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(booking),
+    })
+      .then((response) => response.json())
+      .then((data) => alert("Booking updated successfully"))
+      .catch((error) => console.error("Error updating booking:", error));
   };
 
   return (
@@ -52,22 +69,53 @@ export default function EmailInput() {
 
       {loading && <div>Loading...</div>}
       {error && <div>{error}</div>}
-      {!loading && !error && bookingDetails && bookingDetails.length > 0 && (
-        <div>
-          <h3>Booking Details:</h3>
-          {bookingDetails.map((booking) => (
-            <div key={booking.id}>
-              <p>ID: {booking.id}</p>
-              <p>Name: {booking.name}</p>
-              <p>Phone: {booking.phone}</p>
-              <p>Message: {booking.comments}</p>
-            </div>
-          ))}
-        </div>
-      )}
-      {!loading && !error && bookingDetails && bookingDetails.length === 0 && (
-        <div>No booking details found.</div>
-      )}
+      {!loading &&
+        !error &&
+        bookingDetails.map((booking, index) => (
+          <div key={booking.id}>
+            <h3>Booking Details:</h3>
+            <input
+              type="text"
+              value={booking.date}
+              onChange={(e) => handleChange(index, "date", e.target.value)}
+              placeholder="Date"
+            />
+            <input
+              type="text"
+              value={booking.time}
+              onChange={(e) => handleChange(index, "time", e.target.value)}
+              placeholder="Time"
+            />
+            <input
+              type="text"
+              value={booking.name}
+              onChange={(e) => handleChange(index, "name", e.target.value)}
+              placeholder="Name"
+            />
+
+            <input
+              type="text"
+              value={booking.email}
+              onChange={(e) => handleChange(index, "email", e.target.value)}
+              placeholder="Email"
+            />
+            <input
+              type="text"
+              value={booking.phone}
+              onChange={(e) => handleChange(index, "phone", e.target.value)}
+              placeholder="Phone"
+            />
+            <textarea
+              value={booking.comments}
+              onChange={(e) => handleChange(index, "comments", e.target.value)}
+              placeholder="Comments"
+            />
+            <button onClick={() => handleUpdate(booking)}>
+              Update Booking
+            </button>
+          </div>
+        ))}
+      {bookingDetails.length === 0 && <div>No booking details found.</div>}
     </div>
   );
 }

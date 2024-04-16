@@ -3,7 +3,6 @@ import Header from "./components/templates/Header";
 import Calendar from "./components/organism/Calendar";
 import Hero from "./components/organism/Hero";
 import About from "./components/organism/About";
-import EditBooking from "./components/organism/EditBooking";
 import EmailInput from "./components/organism/EmailInput";
 
 function App() {
@@ -17,7 +16,6 @@ function App() {
           <Route path="/" element={<Hero />} />
           <Route path="/about" element={<About />} />
           <Route path="/find-booking" element={<EmailInput />} />
-          <Route path="/edit-booking" element={<EditBooking />} />
           <Route path="/calendar" element={<Calendar />} />
         </Routes>
 
