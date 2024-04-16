@@ -34,7 +34,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
 // Handle POST requests
 function handlePost($pdo)
 {
+
     $data = json_decode(file_get_contents('php://input'), true);
+    error_log(print_r($data, true)); // This will log the data to your PHP error log
+
     if (isset($data['id'])) {
         updateBooking($pdo, $data);
     } else {
@@ -98,21 +101,26 @@ function createBooking($pdo, $data)
 // Function to update a booking
 function updateBooking($pdo, $data)
 {
-    if (!isset($data['date'], $data['time'], $data['name'], $data['email'], $data['phone'], $data['comments'], $data['id'])) {
+    if (!isset($data['date_field'], $data['time_slot'], $data['name'], $data['email'], $data['phone'], $data['comments'], $data['id'])) {
         http_response_code(400);
-        echo json_encode(['error' => 'Invalid input']);
+        echo json_encode(['error' => 'Invalid input', 'received' => $data]);
         return;
     }
     $query = "UPDATE calendar SET date_field = ?, time_slot = ?, name = ?, email = ?, phone = ?, comments = ? WHERE id = ?";
     $stmt = $pdo->prepare($query);
-    $stmt->execute([
-        $data['date'],
-        $data['time'],
+    $success = $stmt->execute([
+        $data['date_field'],
+        $data['time_slot'],
         $data['name'],
         $data['email'],
         $data['phone'],
         $data['comments'],
         $data['id']
     ]);
-    echo json_encode(['message' => 'Booking updated successfully']);
+
+    if ($success) {
+        echo json_encode(['message' => 'Booking updated successfully']);
+    } else {
+        echo json_encode(['error' => 'Update failed', 'details' => $stmt->errorInfo()]);
+    }
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DateSelector from "../molecule/DateSelector";
+import BookingChange from "../molecule/BookingChange";
 
 export default function EmailInput() {
   const [email, setEmail] = useState("");
@@ -39,36 +40,59 @@ export default function EmailInput() {
       });
   };
 
-  const handleChange = (index, field, value) => {
-    const updatedBookings = [...bookingDetails];
-    updatedBookings[index][field] = value;
-    setBookingDetails(updatedBookings);
-  };
+  // const handleChange = (index, field, value) => {
+  //   const updatedBookings = [...bookingDetails];
+  //   updatedBookings[index][field] = value;
+  //   setBookingDetails(updatedBookings);
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetchBookingDetails(email);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   fetchBookingDetails(email);
+  // };
 
-  const handleDateClick = (day) => {
-    handleChange(selectedDateIndex, "date", day.toISOString().slice(0, 10)); // Update the date
-    setCalendarVisible(false); // Close the calendar after selecting a date
-  };
+  // const handleDateClick = (day) => {
+  //   handleChange(selectedDateIndex, "date", day.toISOString().slice(0, 10)); // Update the date
+  //   setCalendarVisible(false); // Close the calendar after selecting a date
+  // };
   const handleUpdate = (booking) => {
+    const updateData = {
+      id: booking.id,
+      date_field: booking.date, // Assuming this should match 'date_field' in the database
+      time_slot: booking.time, // Assuming this should match 'time_slot' in the database
+      name: booking.name,
+      email: booking.email,
+      phone: booking.phone,
+      comments: booking.comments,
+    };
+    console.log("Updating booking with:", updateData);
+
     const backendUrl = "http://localhost:8000/index.php";
     fetch(backendUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(booking),
+      body: JSON.stringify(updateData),
     })
-      .then((response) => response.json())
-      .then((data) => alert("Booking updated successfully"))
+      .then((response) => {
+        if (!response.ok)
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Update response:", data);
+        alert("Booking updated successfully");
+      })
       .catch((error) => console.error("Error updating booking:", error));
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          fetchBookingDetails(email);
+        }}
+      >
         <input
           type="email"
           value={email}
@@ -83,63 +107,13 @@ export default function EmailInput() {
       {error && <div>{error}</div>}
       {!loading &&
         !error &&
-        bookingDetails.map((booking, index) => (
-          <div key={booking.id}>
-            <h3>Booking Details:</h3>
-            <input
-              type="text"
-              value={booking.date}
-              readOnly
-              onClick={() => {
-                setSelectedDateIndex(index); // Set the index of the date we're editing
-                setCalendarVisible(true); // Open the calendar
-              }}
-              placeholder="Select Date"
-            />
-            {calendarVisible && selectedDateIndex === index && (
-              <DateSelector onSelectDate={handleDateClick} />
-            )}
-            {timeSlots.map((slot, index) => (
-              <button
-                key={index}
-                className={`time-slot ${
-                  selectedTime === slot ? "selected-time" : ""
-                }`}
-                onClick={() => setSeletecTime(slot)}
-              >
-                {slot}
-              </button>
-            ))}
-            <input
-              type="text"
-              value={booking.name}
-              onChange={(e) => handleChange(index, "name", e.target.value)}
-              placeholder="Name"
-            />
-
-            <input
-              type="text"
-              value={booking.email}
-              onChange={(e) => handleChange(index, "email", e.target.value)}
-              placeholder="Email"
-            />
-            <input
-              type="text"
-              value={booking.phone}
-              onChange={(e) => handleChange(index, "phone", e.target.value)}
-              placeholder="Phone"
-            />
-            <textarea
-              value={booking.comments}
-              onChange={(e) => handleChange(index, "comments", e.target.value)}
-              placeholder="Comments"
-            />
-            <button onClick={() => handleUpdate(booking)}>
-              Update Booking
-            </button>
-          </div>
+        bookingDetails.map((booking) => (
+          <BookingChange
+            key={booking.id}
+            booking={booking}
+            onUpdate={handleUpdate}
+          />
         ))}
-      {bookingDetails.length === 0 && <div>No booking details found.</div>}
     </div>
   );
 }
