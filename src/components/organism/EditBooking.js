@@ -1,101 +1,79 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 
 export default function EditBooking() {
   const [bookingData, setBookingData] = useState(null);
-  const { id } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [searchParams] = useSearchParams();
   const email = searchParams.get("email");
 
   useEffect(() => {
     if (email) {
+      setLoading(true);
       fetch(
         `http://localhost:8000/index.php?email=${encodeURIComponent(email)}`
       )
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          return response.json();
+        .then((response) => response.json())
+        .then((data) => {
+          setBookingData(data);
+          setLoading(false);
         })
-        .then((data) => setBookingData(data))
-        .catch((error) => console.error("Error fetching data:", error));
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+          setError(error.toString());
+          setLoading(false);
+        });
     }
   }, [email]);
+  if (loading) return <div>Loading booking information...</div>;
+  if (error) return <div>Error loading booking: {error}</div>;
+  if (!bookingData) return <div>No booking data available.</div>;
 
-  console.log(id); // Check if id is logged correctly
-
-  //   if (id) {
-  //     fetch(`http://localhost:8000/index.php?id=${id}`)
-  //       .then((response) => {
-  //         if (!response.ok) {
-  //           throw new Error(`HTTP error! status: ${response.status}`);
-  //         }
-  //         return response.json();
-  //       })
-  //       .then((data) => setBookingData(data))
-  //       .catch((error) => console.error("Error fetching data:", error));
-  //   }
-  // }, [id]);
-
-  const handleChange = (e) => {
-    setBookingData({ ...bookingData, [e.target.name]: e.target.value });
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setBookingData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = () => {
-    fetch("http://localhost:8000/index.php", {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    fetch(`http://localhost:8000/index.php`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...bookingData, id }), // Include 'id' in the update payload
+      body: JSON.stringify(bookingData),
     })
       .then((response) => {
-        if (response.ok) {
-          alert("Booking Updated Successfully");
-        } else {
+        if (!response.ok)
           throw new Error(`HTTP error! status: ${response.status}`);
-        }
+        return response.json();
       })
-      .catch((error) => console.error("Error updating data:", error));
+      .then((data) => alert("Booking updated successfully"))
+      .catch((error) => console.error("Error updating booking:", error));
   };
 
-  if (!bookingData) {
-    return <div>Loading...</div>;
-  }
+  if (loading) return <div>Loading booking information...</div>;
+  if (error) return <div>Error loading booking: {error}</div>;
+  if (!bookingData) return <div>No booking data available.</div>;
 
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
+      <h2>Edit Booking</h2>
       <input
+        type="text"
         name="date"
         value={bookingData.date || ""}
         onChange={handleChange}
+        placeholder="Date"
       />
       <input
+        type="text"
         name="time"
         value={bookingData.time || ""}
         onChange={handleChange}
+        placeholder="Time"
       />
-      <input
-        name="name"
-        value={bookingData.name || ""}
-        onChange={handleChange}
-      />
-      <input
-        name="email"
-        value={bookingData.email || ""}
-        onChange={handleChange}
-      />
-      <input
-        name="phone"
-        value={bookingData.phone || ""}
-        onChange={handleChange}
-      />
-      <textarea
-        name="comments"
-        value={bookingData.comments || ""}
-        onChange={handleChange}
-      />
-      <button onClick={handleSubmit}>Update Booking</button>
-    </div>
+      {/* Add inputs for other fields such as name, email, phone, etc., similar to above */}
+      <button type="submit">Update Booking</button>
+    </form>
   );
 }

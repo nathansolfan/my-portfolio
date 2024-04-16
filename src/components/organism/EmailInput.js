@@ -1,25 +1,72 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export default function EmailInput() {
   const [email, setEmail] = useState("");
-  const navigate = useNavigate();
+  const [bookingDetails, setBookingDetails] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const fetchBookingDetails = (email) => {
+    setLoading(true);
+    setError(null);
+    // Make sure to replace "http://example.com/api/bookings" with your actual API endpoint
+    const backendUrl = "http://localhost:8000/index.php";
+    const queryParams = `?email=${encodeURIComponent(email)}`;
+
+    fetch(backendUrl + queryParams)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setBookingDetails(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Failed to load booking", error);
+        setError("Failed to load booking");
+        setLoading(false);
+      });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/edit-booking?email=${encodeURIComponent(email)}`);
+    fetchBookingDetails(email);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Enter your email to find booking"
-        required
-      />
-      <button type="submit">Find Booking</button>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter your email to find booking"
+          required
+        />
+        <button type="submit">Find Booking</button>
+      </form>
+
+      {loading && <div>Loading...</div>}
+      {error && <div>{error}</div>}
+      {!loading && !error && bookingDetails.length > 0 && (
+        <div>
+          <h3>Booking Details:</h3>
+          {bookingDetails.map((booking) => (
+            <div key={booking.id}>
+              <p>ID: {booking.id}</p>
+              <p>Name: {booking.name}</p>
+              <p>Phone: {booking.phone}</p>
+              <p>Message: {booking.comments}</p>
+            </div>
+          ))}
+        </div>
+      )}
+      {!loading && !error && bookingDetails.length === 0 && (
+        <div>No booking details found.</div>
+      )}
+    </div>
   );
 }
