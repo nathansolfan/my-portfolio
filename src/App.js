@@ -4,6 +4,7 @@ import Calendar from "./components/organism/Calendar";
 import Hero from "./components/organism/Hero";
 import About from "./components/organism/About";
 import EmailInput from "./components/organism/EmailInput";
+import Logo from "./components/organism/Logo";
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Hero />} />
+          <Route path="/logo" element={<Logo />} />
+
           <Route path="/about" element={<About />} />
           <Route path="/find-booking" element={<EmailInput />} />
           <Route path="/calendar" element={<Calendar />} />

@@ -1,0 +1,27 @@
+.logo {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  display: flex;
+  justify-content: center;  
+  gap: 20px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 3s ease, transform 3s ease;
+}
+
+.logo.reveal  {
+  opacity: 1; /* Fully visible */
+  transform: translateY(0); /* Move to final position */
+}
+
+.logo img {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.75s ease; /* Smooth transition for the transform property */
+}
+
+
+.logo img:hover {
+  transform: scale(1.25); /* Slightly enlarge logos on hover */
+}
