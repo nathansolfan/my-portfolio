@@ -1,0 +1,6 @@
+.section-box img {
+    width: 40vh;
+    height: auto;
+    object-fit: contain; 
+
+}

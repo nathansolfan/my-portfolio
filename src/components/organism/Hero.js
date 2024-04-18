@@ -3,6 +3,7 @@ import "../Styles/Hero.css";
 
 import image from "../../images/img.png";
 import Logo from "./Logo";
+import Cards from "../molecule/Cards";
 
 export default function Hero() {
   return (
@@ -22,6 +23,7 @@ export default function Hero() {
         </div>
       </div>
       <div>
+        <Cards />
         <Logo />
       </div>
     </div>
