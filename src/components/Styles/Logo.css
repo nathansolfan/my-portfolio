@@ -5,13 +5,12 @@
   justify-content: center;  
   gap: 20px;
   opacity: 0;
-  transform: translateY(-10px);
   transition: opacity 3s ease, transform 3s ease;
 }
 
 .logo.reveal  {
   opacity: 1; /* Fully visible */
-  transform: translateY(0); /* Move to final position */
+  transform: translateY(10px); /* Move to final position */
 }
 
 .logo img {
