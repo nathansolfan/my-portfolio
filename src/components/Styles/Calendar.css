@@ -100,7 +100,30 @@
   }
 }
 
-/* Adjustments for Contact Information and Comments Section */
+/* Adjustments for SELECT YOUR TIME  */
+.time-slot {
+  background-color: #716f6f;
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  margin: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s ease-in-out;
+  display: inline-block;
+}
+
+.time-slot.selected-time {
+  background-color: #007bff;
+  color: 333;
+  transform: scale(1.025); /* Slightly enlarges the selected time slot */
+}
+
+.time-slot:hover{
+  background-color: #007bff;
+  color: white;
+}
+/* Adjustments for CONTACT */
+
 .contact-info, .comments-section {
   margin-top: 20px;
   padding: 10px;
@@ -112,27 +135,13 @@
 .contact-info input, .comments-section textarea {
   width: 100%;
   padding: 8px;
-  margin: 5px 0;
+  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  resize: none;
 }
 
-.time-slot {
-  margin: 50px;
-  padding: 10px 20px;
-  background-color: lightgray;
-  color: #4b4a4a;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-}
 
-.time-slot:hover, .time-slot.selected-time {
-  background-color: #007bff;
-  color: white;
-}
+
 
 /* Button Styles */
 button {
