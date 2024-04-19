@@ -6,7 +6,9 @@ ini_set('display_errors', 0);  // Turn off display of errors
 error_reporting(E_ALL);        // Still log them for the server logs
 
 header("Content-Type: application/json");
-header("Access-Control-Allow-Origin: https://nathanferreira.netlify.app/");
+header("Access-Control-Allow-Origin: *");
+
+// header("Access-Control-Allow-Origin: https://nathanferreira.netlify.app/");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Credentials: true");
