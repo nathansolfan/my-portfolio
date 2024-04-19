@@ -9,7 +9,7 @@ header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
 
 // header("Access-Control-Allow-Origin: https://nathanferreira.netlify.app/");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, DELETE");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Credentials: true");
 
@@ -26,6 +26,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
     case 'GET':
         handleGet($pdo);
+        break;
+    case 'DELETE':
+        handleDelete($pdo);
         break;
     default:
         http_response_code(405);
@@ -46,7 +49,7 @@ function handlePost($pdo)
         createBooking($pdo, $data);
     }
 }
-
+// GET REQUEST
 function handleGet($pdo)
 {
     // Fetching bookings by email if 'email' parameter is set
@@ -124,5 +127,28 @@ function updateBooking($pdo, $data)
         echo json_encode(['message' => 'Booking updated successfully']);
     } else {
         echo json_encode(['error' => 'Update failed', 'details' => $stmt->errorInfo()]);
+    }
+}
+
+function handleDelete($pdo)
+{
+    parse_str(file_get_contents("php://input"), $DELETE);
+
+    if (!isset($_GET['id'])) {
+        http_response_code(400);
+        echo json_encode(['error' => 'Missing ID for deletion']);
+        return;
+    }
+
+    $id = $_GET['id'];
+    $query = "DELETE FROM calendar WHERE id = ?";
+    $stmt = $pdo->prepare($query);
+    $success = $stmt->execute([$id]);
+
+    if ($success) {
+        echo json_encode(['message' => 'Booking deleted successfully']);
+    } else {
+        http_response_code(500);
+        echo json_encode(['error' => 'Failed to delete booking', 'details' => $stmt->errorInfo()]);
     }
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DateSelector from "./DateSelector";
 import "../Styles/Booking.css";
+import DeleteBooking from "../atom/DeleteBooking";
 
 function BookingChange({ booking, onUpdate }) {
   const [selectedTime, setSelectedTime] = useState(booking.time);
@@ -25,6 +26,23 @@ function BookingChange({ booking, onUpdate }) {
   const handleDateSelect = (date) => {
     handleChange("date", date.toISOString().slice(0, 10));
     toggleDateSelector();
+  };
+
+  const handleDelete = (id) => {
+    console.log("Attempting to delete booking with ID:", id); // Ensure this is not undefined
+
+    fetch(`http://localhost:8000/index.php?id=${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Delete response:", data);
+        alert("Booking deleted");
+      })
+      .catch((error) => {
+        console.error("Error", error);
+        alert("An error occurred while deleting the booking");
+      });
   };
 
   const handleSubmit = () => {
@@ -96,6 +114,7 @@ function BookingChange({ booking, onUpdate }) {
           placeholder="Comments"
         />
         <button onClick={handleSubmit}>Update Booking</button>
+        <DeleteBooking bookingId={booking.id} onDelete={handleDelete} />
       </div>
     </div>
   );
