@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../Styles/Calendar.css";
+import car from "../../images/car.webp";
 
 export default function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -83,6 +84,8 @@ export default function Calendar() {
 
   return (
     <div className="calendar-container">
+      <img src={car} alt="Background" className="background-image" />
+
       <div>
         <div className="calendar-nav">
           <button onClick={handlePrevMonth}>Prev</button>

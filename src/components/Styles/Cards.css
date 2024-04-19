@@ -4,3 +4,9 @@
     object-fit: contain; 
 
 }
+
+.section-container {
+    display: flex;
+    justify-content: space-evenly;
+
+}
