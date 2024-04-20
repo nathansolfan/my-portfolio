@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DateSelector from "./DateSelector";
 import "../Styles/Booking.css";
 import DeleteBooking from "../atom/DeleteBooking";
+import EmailInput from "../organism/EmailInput";
 
 function BookingChange({ booking, onUpdate }) {
   const [selectedTime, setSelectedTime] = useState(booking.time);
@@ -38,6 +39,7 @@ function BookingChange({ booking, onUpdate }) {
       .then((data) => {
         console.log("Delete response:", data);
         alert("Booking deleted");
+        EmailInput.fetchBookingDetails();
       })
       .catch((error) => {
         console.error("Error", error);
@@ -60,8 +62,8 @@ function BookingChange({ booking, onUpdate }) {
           type="text"
           value={bookingData.date}
           readOnly
-          onClick={toggleDateSelector}
-          placeholder="Select Date"
+          //   onClick={toggleDateSelector}
+          placeholder="Select a Date"
         />
         <DateSelector
           visible={dateSelectorVisible}

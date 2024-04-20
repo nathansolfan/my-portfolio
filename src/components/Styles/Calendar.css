@@ -6,7 +6,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   width: 90%;
-  max-width: 600px;
+  max-width: 750px;
   margin: 20px auto;
 }
 
@@ -58,7 +58,7 @@
   padding: 10px;
   background-color: #fff;
   border: 1px solid #ddd;
-  min-height: 50px;
+  min-height: 85px;
   display: flex;
   align-items: center;
   justify-content: center;

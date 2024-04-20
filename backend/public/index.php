@@ -39,7 +39,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
 // Handle POST requests
 function handlePost($pdo)
 {
-
     $data = json_decode(file_get_contents('php://input'), true);
     error_log(print_r($data, true)); // This will log the data to your PHP error log
 

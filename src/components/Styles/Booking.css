@@ -34,12 +34,18 @@ button:hover, button:focus {
 
 /* Specific styles for the BookingChange component */
 .booking-container {
+ 
   background-color: #f8f8f8;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  margin-top: 20px;
-  
+  max-width: 750px;
+  margin: auto;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;  /* Aligns children vertically */
+  justify-content: center;
+  background: rgba(194, 202, 212, 0.3);
 }
 
 .time-slot {
