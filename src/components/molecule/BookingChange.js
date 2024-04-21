@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DateSelector from "./DateSelector";
 import "../Styles/Booking.css";
-import DeleteBooking from "../atom/DeleteBooking";
+import DeleteBooking from "./DeleteBooking";
 import EmailInput from "../organism/EmailInput";
 
 function BookingChange({ booking, onUpdate }) {

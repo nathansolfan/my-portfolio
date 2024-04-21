@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Header from "./components/templates/Header";
+import Header from "./components/organism/Header";
 import Calendar from "./components/organism/Calendar";
 import Hero from "./components/organism/Hero";
 import About from "./components/organism/About";

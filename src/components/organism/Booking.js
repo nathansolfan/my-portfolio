@@ -1,5 +1,5 @@
 import React from "react";
-import Calendar from "../organism/Calendar";
+import Calendar from "./Calendar";
 
 export default function Booking() {
   return (
