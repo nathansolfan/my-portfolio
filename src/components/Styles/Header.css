@@ -31,6 +31,7 @@
   
   .navbar {
     display: flex;
+    flex-wrap: wrap; /* Allows the navbar to wrap on smaller screens */
     justify-content: space-between; /* Align items on both ends */
     align-items: center;
     padding: 0 10px; /* Adjusted padding */
@@ -60,6 +61,9 @@
     font-size: 16px;
     transition: color 0.2s ease;
     text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.75);
+  }
+  .nav-link.active {
+    color: #4A90E2; /* Example active link color */
   }
   
   .nav-link:hover, .nav-link:focus {

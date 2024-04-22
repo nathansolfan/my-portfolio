@@ -2,13 +2,18 @@ import React from "react";
 import "../Styles/Hero.css";
 
 import image from "../../images/img.png";
+import image2 from "../../images/deep.jpg";
+
 import Logo from "./Logo";
 import Cards from "../molecule/Cards";
 
 export default function Hero() {
   return (
-    <div>
-      <div className="hero-container">
+    <div className="home-container">
+      <div
+        className="hero-container"
+        style={{ backgroundImage: `url(${image2})` }}
+      >
         <div className="hero-items">
           <div>
             <h1>NATHAN FERREIRA</h1>
@@ -18,8 +23,6 @@ export default function Hero() {
             </p>
             <button className="hero-button">Learn More</button>
           </div>
-
-          <img src={image} alt="" />
         </div>
       </div>
       <div>

@@ -1,4 +1,9 @@
 /* Hero.css */
+.home-container img {
+  max-width: 100%;
+
+}
+
 .hero-container {
   display: flex;
   justify-content: center;
