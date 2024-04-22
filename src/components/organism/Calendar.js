@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../Styles/Calendar.css";
 import car from "../../images/car.webp";
-import supabase from "./service/supabaseService"; // Adjust the path as necessary
+import supabase from "../../service/supabaseService"; // Adjust the path as necessary
 
 export default function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -45,7 +45,7 @@ export default function Calendar() {
     setContactInfo({ ...contactInfo, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const payload = {
       date_field: selectedDate.toISOString().slice(0, 10),
       time_slot: selectedTime,
@@ -57,32 +57,20 @@ export default function Calendar() {
 
     console.log("Submitting:", payload); // For testing, show the payload in the console
 
-    fetch("http://localhost:8000/index.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Server response:", data);
-        alert("Your appointment has been successfully saved!"); // Alert the user
-        // Reset all states
-        setSeletecDate(null);
-        setSeletecTime("");
-        setContactInfo({ name: "", email: "", phone: "" });
-        setComment("");
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("An error occurred while saving your appointment."); // Alert the user about the error
-      });
+    const { data, error } = await supabase.from("calendar").insert([payload]);
+
+    if (error) {
+      console.log("Error", error.message);
+      alert("An error occurred while saving your appointment");
+    } else {
+      console.log("Data inserted successfully man", data);
+      alert("Your appointment has been successfully saved"); //
+      // reset
+      setSeletecDate(null);
+      setSeletecTime("");
+      setContactInfo({ name: "", email: "", phone: "" });
+      setComment("");
+    }
   };
 
   return (
