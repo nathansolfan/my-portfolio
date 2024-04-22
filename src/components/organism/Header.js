@@ -44,6 +44,18 @@ export default function Header() {
             </Link>
           </li>
         </ul>
+        <ul className="nav-list">
+          <li className="nav-item">
+            <Link to="/find-booking" className="nav-link">
+              Register
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/calendar" className="nav-link">
+              Login
+            </Link>
+          </li>
+        </ul>
       </nav>
     </header>
   );

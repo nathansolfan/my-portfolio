@@ -1,13 +1,14 @@
 /* Global styles for the calendar */
 .calendar-container {
+ 
   text-align: center;
-  padding: 1.25rem;
+  padding: 1rem;
   background-color: rgba(248, 248, 248, 0.6); /* Adjust the alpha value to increase/decrease transparency */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   width: 90%;
-  max-width: 750px;
-  margin: 20px auto;
+  max-width: 500px;
+  margin: 75px auto;
 }
 
 .background-image {
@@ -58,7 +59,7 @@
   padding: 10px;
   background-color: #fff;
   border: 1px solid #ddd;
-  min-height: 85px;
+  min-height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;

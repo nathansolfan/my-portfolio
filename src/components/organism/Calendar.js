@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import "../Styles/Calendar.css";
 import car from "../../images/carnr2.webp";
-import supabase from "../../service/supabaseService"; // Adjust the path as necessary
+import supabase from "../../service/supabaseService";
 
 export default function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSeletecDate] = useState(null);
-  const [selectedTime, setSeletecTime] = useState("");
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [pickupTime, setPickupTime] = useState("");
+  const [dropoffTime, setDropoffTime] = useState("");
+  const [locations, setLocations] = useState({
+    pickupLocation: "",
+    dropoffLocation: "",
+  });
   const [contactInfo, setContactInfo] = useState({
     name: "",
     email: "",
     phone: "",
   });
   const [comment, setComment] = useState("");
-
-  const timeSlots = ["Morning", "Afternoon", "Evening", "Night"];
 
   const getMonthDays = (date) => {
     const startDay = new Date(date.getFullYear(), date.getMonth(), 1);
@@ -25,6 +28,7 @@ export default function Calendar() {
     }
     return days;
   };
+
   const days = getMonthDays(currentDate);
 
   const handlePrevMonth = () =>
@@ -37,8 +41,9 @@ export default function Calendar() {
     );
 
   const handleDateClick = (day) => {
-    setSeletecDate(day);
-    setSeletecTime(""); // Reset selected time when a new date is clicked
+    setSelectedDate(day);
+    setPickupTime(""); // Assuming this resets the time when a new date is clicked
+    setDropoffTime("");
   };
 
   const handleContactChange = (e) => {
@@ -48,26 +53,28 @@ export default function Calendar() {
   const handleSubmit = async () => {
     const payload = {
       date_field: selectedDate.toISOString().slice(0, 10),
-      time_slot: selectedTime,
+      pickup_time: pickupTime,
+      dropoff_time: dropoffTime,
+      pickup_location: locations.pickupLocation,
+      dropoff_location: locations.dropoffLocation,
       name: contactInfo.name,
       email: contactInfo.email,
       phone: contactInfo.phone,
       comments: comment,
     };
 
-    console.log("Submitting:", payload); // For testing, show the payload in the console
-
     const { data, error } = await supabase.from("calendar").insert([payload]);
 
     if (error) {
-      console.log("Error", error.message);
-      alert("An error occurred while saving your appointment");
+      alert(
+        "An error occurred while saving your appointment: " + error.message
+      );
     } else {
-      console.log("Data inserted successfully man", data);
-      alert("Your appointment has been successfully saved"); //
-      // reset
-      setSeletecDate(null);
-      setSeletecTime("");
+      alert("Your appointment has been successfully saved");
+      setSelectedDate(null);
+      setPickupTime("");
+      setDropoffTime("");
+      setLocations({ pickupLocation: "", dropoffLocation: "" });
       setContactInfo({ name: "", email: "", phone: "" });
       setComment("");
     }
@@ -76,7 +83,6 @@ export default function Calendar() {
   return (
     <div className="calendar-container">
       <img src={car} alt="Background" className="background-image" />
-
       <div>
         <div className="calendar-nav">
           <button onClick={handlePrevMonth}>Prev</button>
@@ -109,21 +115,41 @@ export default function Calendar() {
       {selectedDate && (
         <>
           <div className="grid-time">
-            <h3>Select your time:</h3>
-            {timeSlots.map((slot, index) => (
-              <button
-                key={index}
-                className={`time-slot ${
-                  selectedTime === slot ? "selected-time" : ""
-                }`}
-                onClick={() => setSeletecTime(slot)}
-              >
-                {slot}
-              </button>
-            ))}
+            <h3>Pick-Up Time:</h3>
+            <input
+              type="time"
+              value={pickupTime}
+              onChange={(e) => setPickupTime(e.target.value)}
+            />
+            <h3>Drop-Off Time:</h3>
+            <input
+              type="time"
+              value={dropoffTime}
+              onChange={(e) => setDropoffTime(e.target.value)}
+            />
+          </div>
+          <div className="location-info">
+            <h3>Locations</h3>
+            <input
+              type="text"
+              name="pickupLocation"
+              placeholder="Pick-Up Location"
+              value={locations.pickupLocation}
+              onChange={(e) =>
+                setLocations({ ...locations, pickupLocation: e.target.value })
+              }
+            />
+            <input
+              type="text"
+              name="dropoffLocation"
+              placeholder="Drop-Off Location"
+              value={locations.dropoffLocation}
+              onChange={(e) =>
+                setLocations({ ...locations, dropoffLocation: e.target.value })
+              }
+            />
           </div>
           <div className="contact-info">
-            <h3>Contact Information</h3>
             <input
               type="text"
               name="name"
@@ -147,7 +173,6 @@ export default function Calendar() {
             />
           </div>
           <div className="comments-section">
-            <h3>Comments</h3>
             <textarea
               value={comment}
               onChange={(e) => setComment(e.target.value)}
