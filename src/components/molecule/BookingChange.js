@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import DateSelector from "./DateSelector";
 import "../Styles/Booking.css";
 import DeleteBooking from "./DeleteBooking";
-import EmailInput from "../organism/EmailInput";
 import supabase from "../../service/supabaseService";
 
 //accept RefreshBookings as prop
@@ -19,7 +18,7 @@ function BookingChange({ booking, onUpdate, refreshBookings }) {
   const [dateSelectorVisible, setDateSelectorVisible] = useState(false);
 
   const toggleDateSelector = () => {
-    setDateSelectorVisible(!dateSelectorVisible); // Toggle visibility
+    setDateSelectorVisible((prevVisible) => !prevVisible);
   };
 
   const handleChange = (field, value) => {
@@ -45,7 +44,7 @@ function BookingChange({ booking, onUpdate, refreshBookings }) {
     } else {
       console.log("Booking deleted", data);
       alert("Booking deleteed");
-      // call back the fetchBookingDetails function
+      // call back the
       refreshBookings();
     }
   };
@@ -63,63 +62,73 @@ function BookingChange({ booking, onUpdate, refreshBookings }) {
         <input
           className="booking-item"
           type="text"
-          value={bookingData.date}
+          value={
+            bookingData.date
+              ? new Date(bookingData.date).toLocaleDateString()
+              : ""
+          }
           readOnly
-          //   onClick={toggleDateSelector}
+          onClick={toggleDateSelector} // Add this line
           placeholder="Select a Date"
         />
         <DateSelector
           visible={dateSelectorVisible}
           onSelectDate={handleDateSelect}
         />
-        {["Morning", "Afternoon", "Evening", "Night"].map((slot, index) => (
-          <button
-            key={index}
-            className={`time-slot ${
-              selectedTime === slot ? "selected-time" : ""
-            }`}
-            onClick={() => setSelectedTime(slot)}
-          >
-            {slot}
-          </button>
-        ))}
-        <input
-          className="booking-item"
-          type="text"
-          value={bookingData.name}
-          onChange={(e) =>
-            setBookingData((prev) => ({ ...prev, name: e.target.value }))
-          }
-          placeholder="Name"
-        />
-        <input
-          className="booking-item"
-          type="email"
-          value={bookingData.email}
-          onChange={(e) =>
-            setBookingData((prev) => ({ ...prev, email: e.target.value }))
-          }
-          placeholder="Email"
-        />
-        <input
-          className="booking-item"
-          type="tel"
-          value={bookingData.phone}
-          onChange={(e) =>
-            setBookingData((prev) => ({ ...prev, phone: e.target.value }))
-          }
-          placeholder="Phone"
-        />
-        <textarea
-          className="booking-item"
-          value={bookingData.comments}
-          onChange={(e) =>
-            setBookingData((prev) => ({ ...prev, comments: e.target.value }))
-          }
-          placeholder="Comments"
-        />
-        <button onClick={handleSubmit}>Update Booking</button>
-        <DeleteBooking bookingId={booking.id} onDelete={handleDelete} />
+        <div className="time-container">
+          {["Morning", "Afternoon", "Evening", "Night"].map((slot, index) => (
+            <button
+              key={index}
+              className={`time-slot ${
+                selectedTime === slot ? "selected-time" : ""
+              }`}
+              onClick={() => setSelectedTime(slot)}
+            >
+              {slot}
+            </button>
+          ))}
+        </div>
+        <div className="item-container">
+          <input
+            className="booking-item"
+            type="text"
+            value={bookingData.name}
+            onChange={(e) =>
+              setBookingData((prev) => ({ ...prev, name: e.target.value }))
+            }
+            placeholder="Name"
+          />
+          <input
+            className="booking-item"
+            type="email"
+            value={bookingData.email}
+            onChange={(e) =>
+              setBookingData((prev) => ({ ...prev, email: e.target.value }))
+            }
+            placeholder="Email"
+          />
+          <input
+            className="booking-item"
+            type="tel"
+            value={bookingData.phone}
+            onChange={(e) =>
+              setBookingData((prev) => ({ ...prev, phone: e.target.value }))
+            }
+            placeholder="Phone"
+          />
+          <textarea
+            className="booking-item"
+            value={bookingData.comments}
+            onChange={(e) =>
+              setBookingData((prev) => ({ ...prev, comments: e.target.value }))
+            }
+            placeholder="Comments"
+          />
+        </div>
+        <div className="button">
+          <button onClick={handleSubmit}>Update Booking</button>
+          <DeleteBooking bookingId={booking.id} onDelete={handleDelete} />
+        </div>
       </div>
     </div>
   );

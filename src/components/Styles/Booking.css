@@ -1,97 +1,71 @@
-/* General form and button styling for the entire application */
-form {
+/* Apply a Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+body {
+  font-family: 'Open+Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.booking-box {
   display: flex;
   flex-direction: column;
-  margin: 20px auto;
-  width: 90%;
-  max-width: 600px;
+  margin: auto;
+  max-width: 750px;
 }
 
-input[type="email"], input[type="text"], input[type="tel"], textarea {
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem; /* Consistent font size for readability */
-  background-color: #fff;
+.item-container{
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+
 }
 
+
+
+/* Enhance the look of buttons */
 button {
-  padding: 10px;
-  margin-top: 10px;
-  background-color: #007bff; /* Primary color */
+  padding: 10px 20px;
+  background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
+  transition: background-color 0.2s, transform 0.1s;
 }
 
 button:hover, button:focus {
   background-color: #0056b3;
+  transform: scale(1.05);
   outline: none;
 }
 
-/* Specific styles for the BookingChange component */
-.booking-container {
- 
-  background-color: #f8f8f8;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  max-width: 750px;
-  margin: auto;
-  height: 70vh;
-  display: flex;
-  flex-direction: column;  /* Aligns children vertically */
-  justify-content: center;
-  background: rgba(194, 202, 212, 0.3);
+/* Update the inputs for better visibility and interactivity */
+input[type="email"], input[type="text"], input[type="tel"], textarea {
+  padding: 12px;
+  margin: 10px 0;
+  border: 2px solid #007bff;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #fff;
+  transition: border-color 0.2s;
 }
 
-.time-slot {
-  background-color: #716f6f;
-  border: 1px solid #ddd;
-  padding: 8px 16px;
-  margin: 5px;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s ease-in-out;
-  display: inline-block;
+input[type="email"]:focus, input[type="text"]:focus, input[type="tel"]:focus, textarea:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 8px rgba(0,91,187,0.2);
 }
 
-.booking-item {
-  width: 100%; /* Ensures that input fields use the full width */
-  margin-bottom: 10px;
-  display: block;
-}
-
-/* Time slot buttons within the BookingChange component */
-
-
-/* Media queries for responsive layout adjustments */
+/* Modify media queries for responsive behavior */
 @media (max-width: 768px) {
   .booking-box, form {
-    width: 95%;
+    width: 100%;
+    padding: 15px;
   }
 
-  input[type="email"], input[type="text"], input[type="tel"], textarea, button {
-    font-size: 0.9rem;
+  input, button {
+    font-size: 1rem;
   }
-}
-
-/* Styles for contact information and comments sections in BookingChange */
-.contact-info, .comments-section {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #f4f4f4;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.contact-info input, .comments-section textarea {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
 }
