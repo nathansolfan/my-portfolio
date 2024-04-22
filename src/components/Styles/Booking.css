@@ -15,13 +15,16 @@ body {
   max-width: 750px;
 }
 
-.item-container{
+.item-container {
   display: flex;
-  justify-content: center;
-  margin: 10px 0;
-
+  flex-direction: column;
+  width: 70%;  /* Ensures it fills the space of its parent container */
+  max-width: 600px;  /* Maximum width to prevent it from becoming too wide */
+  min-height: 200px;  /* Minimum height to ensure it doesn't become too short */
+  margin: auto;  /* Centers the container */
+  padding: 20px;  /* Adds space inside the container */
+  gap: 10px;  /* Space between items */
 }
-
 
 
 /* Enhance the look of buttons */

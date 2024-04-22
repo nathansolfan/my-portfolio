@@ -1,21 +1,54 @@
-Header.css
 .header {
-    background-color: #007bff; /* Blue background */
+    position: fixed; /* Fixes the header at the top of the viewport */
+    top: 0; /* Aligns the header to the top edge of the viewport */
+    left: 0; /* Aligns the header to the left edge of the viewport */
+    width: 100%; /* Ensures the header extends across the full width of the viewport */
+    z-index: 1000; /* Ensures the header stays on top of other content */
+    background-color: transparent; /* Starts with a transparent background */
+    color: white;
+    padding: 5px 20px;
+    transition: background-color 1s ease; /* Smooth transition for background color */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: adds shadow for better visibility when scrolled */
+}
+
+  
+  .header.transparent {
+    background-color: transparent;
+    color: white; /* Ensures text is visible if the background is dark */
+  }
+
+  .header.scrolled {
+    background-color: #007bff; /* Blue background when scrolled */
     color: white;
     padding: 10px 20px;
+  }
+
+  .navbar img {
+    width: 50px;
+    height: auto;
+    object-fit: contain;
   }
   
   .navbar {
     display: flex;
-    justify-content: center; /* Centering the navbar */
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;  /* Ensures padding from the left edge */
+    padding-right: 20px; /* Ensures padding from the right edge */
   }
   
+
+ 
+
+
   .nav-list {
-    list-style: none; /* Removes default list styling */
-    padding: 0;
-    margin: 0;
     display: flex;
-    gap: 20px; /* Creates space between links */
+    justify-content: center;
+    flex-grow: 1;  /* Allows the list to take up the remaining space */
+    list-style: none;
+    padding: 0;
+    margin: 0 10%;  /* Centering the nav list within the available space */
+    gap: 20px;
   }
   
   .nav-item {
@@ -26,12 +59,19 @@ Header.css
     transform: scale(1.075); /* Slightly enlarge logos on hover */
 
   }
+
+  .nav-link {
+    color: white; /* Text color */
+    text-decoration: none; /* Removes underline from links */
+   
+}
   
   .nav-link {
     color: white; /* Text color */
     text-decoration: none; /* Removes underline from links */
-    font-size: 24px; /* Sets font size */
-    transition: color 0.2s ease;   
+    font-size: 16px; /* Sets font size */
+    transition: color 0.2s ease;
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.75); /* Adds shadow for better visibility */
   }
   
   .nav-link:hover, .nav-link:focus {
