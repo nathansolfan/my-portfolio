@@ -1,3 +1,5 @@
+ //CREATE with index.PHP
+ 
  // fetch("http://localhost:8000/index.php", {
     //   method: "POST",
     //   headers: {
@@ -24,3 +26,43 @@
     //     console.error("Error:", error);
     //     alert("An error occurred while saving your appointment."); // Alert the user about the error
     //   });
+
+
+
+    // FETCH DATA though PHP
+
+    const fetchBookingDetails = (email) => {
+    setLoading(true);
+    const backendUrl = "http://localhost:8000/index.php";
+    const queryParams = `?email=${encodeURIComponent(email)}`;
+
+    fetch(backendUrl + queryParams)
+      .then((response) => {
+        if (!response.ok) throw new Error("Failed to fetch");
+        return response.json();
+      })
+      .then((data) => {
+        setBookingDetails(Array.isArray(data) ? data : []);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError("Failed to load booking");
+        setLoading(false);
+      });
+  };
+
+  const handleUpdate = (updatedBooking) => {
+    const backendUrl = "http://localhost:8000/index.php";
+    fetch(backendUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedBooking),
+    })
+      .then((response) => {
+        if (!response.ok)
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        return response.json();
+      })
+      .then(() => alert("Booking updated successfully"))
+      .catch((error) => console.error("Error updating booking:", error));
+  };

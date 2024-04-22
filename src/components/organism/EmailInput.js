@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import BookingChange from "../molecule/BookingChange"; // Ensure correct import
+import supabase from "../../service/supabaseService"; // Adjust the import path as necessary
 
 export default function EmailInput() {
   const [email, setEmail] = useState("");
@@ -7,40 +8,37 @@ export default function EmailInput() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchBookingDetails = (email) => {
+  const fetchBookingDetails = async (email) => {
     setLoading(true);
-    const backendUrl = "http://localhost:8000/index.php";
-    const queryParams = `?email=${encodeURIComponent(email)}`;
+    setError(null);
 
-    fetch(backendUrl + queryParams)
-      .then((response) => {
-        if (!response.ok) throw new Error("Failed to fetch");
-        return response.json();
-      })
-      .then((data) => {
-        setBookingDetails(Array.isArray(data) ? data : []);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError("Failed to load booking");
-        setLoading(false);
-      });
+    let { data, error } = await supabase
+      .from("calendar")
+      .select("*")
+      .eq("email", email);
+
+    if (error) {
+      setError("Failed to load booking");
+      console.error("Error fetching booking", error);
+    } else {
+      setBookingDetails(data);
+    }
+    setLoading(false);
   };
 
-  const handleUpdate = (updatedBooking) => {
-    const backendUrl = "http://localhost:8000/index.php";
-    fetch(backendUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedBooking),
-    })
-      .then((response) => {
-        if (!response.ok)
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        return response.json();
-      })
-      .then(() => alert("Booking updated successfully"))
-      .catch((error) => console.error("Error updating booking:", error));
+  const handleUpdate = async (updatedBooking) => {
+    const { data, error } = await supabase
+      .from("calendar")
+      .update(updatedBooking)
+      .eq("id", updatedBooking.id);
+
+    if (error) {
+      setError("Cant update");
+      alert("Error updating");
+    } else {
+      alert("Booking updated");
+      console.log("Updated data:", data);
+    }
   };
 
   return (
