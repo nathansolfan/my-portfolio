@@ -3,8 +3,10 @@ import DateSelector from "./DateSelector";
 import "../Styles/Booking.css";
 import DeleteBooking from "./DeleteBooking";
 import EmailInput from "../organism/EmailInput";
+import supabase from "../../service/supabaseService";
 
-function BookingChange({ booking, onUpdate }) {
+//accept RefreshBookings as prop
+function BookingChange({ booking, onUpdate, refreshBookings }) {
   const [selectedTime, setSelectedTime] = useState(booking.time);
   const [bookingData, setBookingData] = useState({
     date: booking.date,
@@ -29,22 +31,23 @@ function BookingChange({ booking, onUpdate }) {
     toggleDateSelector();
   };
 
-  const handleDelete = (id) => {
-    console.log("Attempting to delete booking with ID:", id); // Ensure this is not undefined
+  const handleDelete = async (id) => {
+    console.log("Attenmpting to delete booking with ID:", id);
 
-    fetch(`http://localhost:8000/index.php?id=${id}`, {
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Delete response:", data);
-        alert("Booking deleted");
-        EmailInput.fetchBookingDetails();
-      })
-      .catch((error) => {
-        console.error("Error", error);
-        alert("An error occurred while deleting the booking");
-      });
+    const { data, error } = await supabase
+      .from("calendar")
+      .delete()
+      .eq("id", id);
+
+    if (error) {
+      console.error("Error deleting", error);
+      alert("Error while deleting");
+    } else {
+      console.log("Booking deleted", data);
+      alert("Booking deleteed");
+      // call back the fetchBookingDetails function
+      refreshBookings();
+    }
   };
 
   const handleSubmit = () => {

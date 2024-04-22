@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import BookingChange from "../molecule/BookingChange"; // Ensure correct import
 import supabase from "../../service/supabaseService"; // Adjust the import path as necessary
 
@@ -8,23 +8,22 @@ export default function EmailInput() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchBookingDetails = async (email) => {
+  const fetchBookingDetails = useCallback(async () => {
     setLoading(true);
-    setError(null);
 
     let { data, error } = await supabase
       .from("calendar")
       .select("*")
       .eq("email", email);
 
+    setLoading(false);
     if (error) {
       setError("Failed to load booking");
       console.error("Error fetching booking", error);
     } else {
       setBookingDetails(data);
     }
-    setLoading(false);
-  };
+  }, [email]);
 
   const handleUpdate = async (updatedBooking) => {
     const { data, error } = await supabase
@@ -38,6 +37,7 @@ export default function EmailInput() {
     } else {
       alert("Booking updated");
       console.log("Updated data:", data);
+      fetchBookingDetails();
     }
   };
 
@@ -68,6 +68,7 @@ export default function EmailInput() {
             key={booking.id}
             booking={booking}
             onUpdate={handleUpdate}
+            refreshBookings={fetchBookingDetails} // Pass function
           />
         ))}
     </div>

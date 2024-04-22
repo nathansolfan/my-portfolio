@@ -66,3 +66,25 @@
       .then(() => alert("Booking updated successfully"))
       .catch((error) => console.error("Error updating booking:", error));
   };
+
+
+  // DELETEEE
+
+  
+  const handleDelete = (id) => {
+    console.log("Attempting to delete booking with ID:", id); // Ensure this is not undefined
+
+    fetch(`http://localhost:8000/index.php?id=${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Delete response:", data);
+        alert("Booking deleted");
+        EmailInput.fetchBookingDetails();
+      })
+      .catch((error) => {
+        console.error("Error", error);
+        alert("An error occurred while deleting the booking");
+      });
+  };

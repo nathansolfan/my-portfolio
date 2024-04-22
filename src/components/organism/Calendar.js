@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../Styles/Calendar.css";
-import car from "../../images/car.webp";
+import car from "../../images/carnr2.webp";
 import supabase from "../../service/supabaseService"; // Adjust the path as necessary
 
 export default function Calendar() {
