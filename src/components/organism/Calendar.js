@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../Styles/Calendar.css";
 import car from "../../images/car.webp";
+import supabase from "./service/supabaseService"; // Adjust the path as necessary
 
 export default function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -46,10 +47,12 @@ export default function Calendar() {
 
   const handleSubmit = () => {
     const payload = {
-      date: selectedDate.toISOString().slice(0, 10),
-      time: selectedTime,
-      contactInfo,
-      comment,
+      date_field: selectedDate.toISOString().slice(0, 10),
+      time_slot: selectedTime,
+      name: contactInfo.name,
+      email: contactInfo.email,
+      phone: contactInfo.phone,
+      comments: comment,
     };
 
     console.log("Submitting:", payload); // For testing, show the payload in the console
