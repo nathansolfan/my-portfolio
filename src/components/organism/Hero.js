@@ -12,10 +12,7 @@ import Cards from "../molecule/Cards";
 export default function Hero() {
   return (
     <div className="home-container">
-      <div
-        className="hero-container"
-        style={{ backgroundImage: `url(${image2})` }}
-      >
+      <div className="hero-container">
         <Draggable bounds="parent">
           <div className="hero-items" style={{ position: "absolute" }}>
             <div>

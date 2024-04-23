@@ -1,55 +1,52 @@
 .header {
+  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center; /* Ensures all items are aligned vertically */
-  width: 100%; /* Ensures the header spans the full width */
-  background-color: rgba(239, 239, 239, 0.3); /* Adjust the alpha value to increase/decrease transparency */
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: transparent;
+  transition: all 0.3s ease;
 }
 
 .navbar {
   display: flex;
-  justify-content: space-between; /* This will help push the logo to the left and nav-list to the right */
   align-items: center;
-  width: 100%; /* Fit to the container */
-  padding: 0 20px; /* Padding on the sides */
-}
-
-.navbar img {
-  width: 60px; /* Adjust size as needed */
 }
 
 .nav-list {
+  list-style: none;
   display: flex;
-  list-style: none; /* Removes bullets */
-  padding: 0; /* Removes padding */
-  margin: 0; /* Removes margin */
+  padding-left: 0;
 }
 
 .nav-item {
-  padding: 0 10px; /* Adjust spacing as needed */
+  padding: 0 10px;
 }
 
 .nav-link {
   color: white;
-  text-decoration: none; /* Removes underline */
+  text-decoration: none;
 }
 
 .dropdown-menu {
   display: none;
   position: absolute;
-  right: 10px; /* Position the dropdown to the right */
+  right: 20px;
   background-color: #007bff;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  z-index: 2; /* Ensures dropdown is above other content */
-}
-
-.dropdown-menu a {
-  color: white;
-  padding: 12px 16px;
-  text-decoration: none; /* Removes underline from links */
-  display: block; /* Makes links fill the dropdown */
+  z-index: 1;
 }
 
 .dropdown-menu.show {
-  display: block; /* Shows dropdown when active */
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .nav-list {
+    display: block;
+  }
+
+  .nav-item {
+    padding: 10px;
+  }
 }

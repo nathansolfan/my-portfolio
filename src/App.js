@@ -5,6 +5,7 @@ import Hero from "./components/organism/Hero";
 import About from "./components/organism/About";
 import EmailInput from "./components/organism/EmailInput";
 import Logo from "./components/organism/Logo";
+import "./index.css";
 
 function App() {
   return (

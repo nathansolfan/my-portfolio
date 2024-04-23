@@ -1,90 +1,45 @@
 /* Hero.css */
 .hero-container {
   display: flex;
-  justify-content: center; /* Center content horizontally */
-  align-items: center; /* Center content vertically */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
-  background: url('../../images/nathan1.webp') center/cover no-repeat; /* Adjust the path as necessary */  
-  color: #0c0c0c;
-  text-align: center;
+  background: url('../../images/deep.jpg') center/cover no-repeat;
   padding: 20px;
   box-sizing: border-box;
   position: relative;
+  width: 100%;
+  overflow: hidden; /* Ensures no overflow of background image */
 }
-
 .hero-items {
-  background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-  border-radius: 10px; /* Rounded corners */
-  padding: 20px; /* Padding around content */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  max-width: 250px; /* Suitable max-width for readability */
-  width: 100%; /* Adjusts to the width of the container */
-  transition: transform 0.3s ease-out; /* Smooth transition for hover effects */
-}
-
-.hero-container h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5em;
-  letter-spacing: 1.5px;
-  animation: fadeInUp 1s forwards 0.3s;
-  color: #004085; /* Dark blue color for better visibility on light background */
-}
-
-.hero-container p {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  margin-bottom: 2em;
-  animation: fadeInUp 1s forwards 0.6s;
-}
-
-@keyframes fadeInUp {
-  from {
-      transform: translateY(20px);
-      opacity: 0;
-  }
-  to {
-      transform: translateY(0);
-      opacity: 1;
-  }
+  z-index: 2;
+  max-width: 90%; /* Responsive max-width */
+  text-align: center;
 }
 
 .hero-button {
-  font-size: 16px;
   background-color: #007bff;
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s ease-out;
-  animation: fadeInUp 1s forwards 1.2s;
+  transition: background-color 0.3s ease;
 }
 
 .hero-button:hover {
   background-color: #0056b3;
-  transform: scale(1.05); /* Slightly enlarge button on hover for visual feedback */
 }
+
 
 @media (max-width: 768px) {
   .hero-container {
-    background-position: top center;  /* Adjusts the focal point on smaller screens */
-    padding: 10px;  /* Reduces padding on smaller devices */
+    background-position: top center; /* Adjust background position on smaller devices */
+    padding: 10px; /* Less padding on smaller devices */
   }
 
   .hero-items {
-    padding: 15px; /* Slightly reduced padding for smaller devices */
-  }
-
-  .hero-container h1 {
-    font-size: 1.5rem; /* Smaller font size for smaller screens */
-  }
-
-  .hero-container p {
-    font-size: 1rem;
-  }
-
-  .hero-button {
-    padding: 8px 16px;
-    font-size: 14px;
+    width: 100%; /* Full width on smaller devices for better legibility */
   }
 }

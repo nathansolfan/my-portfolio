@@ -1,4 +1,4 @@
-/* Cards.css */
+
 .section-container {
     display: flex;
     flex-wrap: wrap;
@@ -45,4 +45,5 @@
     .section-box {
         width: calc(100% - 40px); /* Full width on smaller screens */
     }
-}
+} 
+

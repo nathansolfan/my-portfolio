@@ -15,7 +15,7 @@ export default function Header() {
   return (
     <header className="header">
       <div className="navbar">
-        <img src={nathan} alt="Logo" />
+        {/* <img src={nathan} alt="Logo" /> */}
 
         <ul className="nav-list">
           <li className="nav-item">
