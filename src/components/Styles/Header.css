@@ -1,22 +1,28 @@
 .header {
   display: flex;
   justify-content: center;
-  
+  align-items: center; /* Ensures all items are aligned vertically */
+  width: 100%; /* Ensures the header spans the full width */
+  background-color: rgba(239, 239, 239, 0.3); /* Adjust the alpha value to increase/decrease transparency */
 }
 
 .navbar {
   display: flex;
+  justify-content: space-between; /* This will help push the logo to the left and nav-list to the right */
+  align-items: center;
+  width: 100%; /* Fit to the container */
+  padding: 0 20px; /* Padding on the sides */
 }
 
 .navbar img {
-  width: 80px; /* Adjust size as needed */
-  display: flex;
+  width: 60px; /* Adjust size as needed */
 }
 
 .nav-list {
   display: flex;
-
-  
+  list-style: none; /* Removes bullets */
+  padding: 0; /* Removes padding */
+  margin: 0; /* Removes margin */
 }
 
 .nav-item {
@@ -25,25 +31,25 @@
 
 .nav-link {
   color: white;
-  text-decoration: none;
+  text-decoration: none; /* Removes underline */
 }
 
 .dropdown-menu {
   display: none;
   position: absolute;
-  right: 20px;
+  right: 10px; /* Position the dropdown to the right */
   background-color: #007bff;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  z-index: 1;
+  z-index: 2; /* Ensures dropdown is above other content */
 }
 
 .dropdown-menu a {
   color: white;
   padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+  text-decoration: none; /* Removes underline from links */
+  display: block; /* Makes links fill the dropdown */
 }
 
 .dropdown-menu.show {
-  display: block;
+  display: block; /* Shows dropdown when active */
 }

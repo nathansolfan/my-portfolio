@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import DateSelector from "./DateSelector";
 import "../Styles/Booking.css";
 import DeleteBooking from "./DeleteBooking";
 import supabase from "../../service/supabaseService";
 
+// import flatpick
+import "flatpickr/dist/flatpickr.min.css"; // Import Flatpickr CSS
+import TimePicker from "./TimePicker";
+
 //accept RefreshBookings as prop
 function BookingChange({ booking, onUpdate, refreshBookings }) {
-  const [selectedTime, setSelectedTime] = useState(booking.time);
+  const [pickupTime, setPickupTime] = useState(booking.time); // manage state for time
   const [bookingData, setBookingData] = useState({
     date: booking.date,
     name: booking.name,
@@ -55,6 +59,9 @@ function BookingChange({ booking, onUpdate, refreshBookings }) {
       ...bookingData,
     });
   };
+
+  // flatpickr
+
   return (
     <div className="booking-container">
       <h3>Booking Details:</h3>
@@ -75,18 +82,9 @@ function BookingChange({ booking, onUpdate, refreshBookings }) {
           visible={dateSelectorVisible}
           onSelectDate={handleDateSelect}
         />
-        <div className="time-container">
-          {["Morning", "Afternoon", "Evening", "Night"].map((slot, index) => (
-            <button
-              key={index}
-              className={`time-slot ${
-                selectedTime === slot ? "selected-time" : ""
-              }`}
-              onClick={() => setSelectedTime(slot)}
-            >
-              {slot}
-            </button>
-          ))}
+        <div>
+          <h3>Pick-Up Time:</h3>
+          <TimePicker pickupTime={pickupTime} setPickupTime={setPickupTime} />
         </div>
         <div className="item-container">
           <input

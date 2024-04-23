@@ -3,6 +3,9 @@ import "../Styles/Calendar.css";
 import car from "../../images/carnr2.webp";
 import supabase from "../../service/supabaseService";
 
+import "flatpickr/dist/flatpickr.min.css";
+import TimePicker from "../molecule/TimePicker";
+
 export default function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
@@ -116,38 +119,7 @@ export default function Calendar() {
         <>
           <div className="grid-time">
             <h3>Pick-Up Time:</h3>
-            <input
-              type="time"
-              value={pickupTime}
-              onChange={(e) => setPickupTime(e.target.value)}
-            />
-            <h3>Drop-Off Time:</h3>
-            <input
-              type="time"
-              value={dropoffTime}
-              onChange={(e) => setDropoffTime(e.target.value)}
-            />
-          </div>
-          <div className="location-info">
-            <h3>Locations</h3>
-            <input
-              type="text"
-              name="pickupLocation"
-              placeholder="Pick-Up Location"
-              value={locations.pickupLocation}
-              onChange={(e) =>
-                setLocations({ ...locations, pickupLocation: e.target.value })
-              }
-            />
-            <input
-              type="text"
-              name="dropoffLocation"
-              placeholder="Drop-Off Location"
-              value={locations.dropoffLocation}
-              onChange={(e) =>
-                setLocations({ ...locations, dropoffLocation: e.target.value })
-              }
-            />
+            <TimePicker pickupTime={pickupTime} setPickupTime={setPickupTime} />
           </div>
           <div className="contact-info">
             <input

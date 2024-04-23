@@ -1,5 +1,6 @@
 import React from "react";
 import "../Styles/Hero.css";
+import { Link } from "react-router-dom";
 
 import image from "../../images/img.png";
 import image2 from "../../images/deep.jpg";
@@ -21,7 +22,9 @@ export default function Hero() {
               Full-Stack Developer. <br></br>HTML/CSS/JS - PHP/NodeJS -
               SQL/MongoDB
             </p>
-            <button className="hero-button">Learn More</button>
+            <Link to="/about">
+              <button className="hero-button">Learn More</button>
+            </Link>
           </div>
         </div>
       </div>
