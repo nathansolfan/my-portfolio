@@ -82,7 +82,7 @@ export default function Calendar() {
 
   return (
     <div className="calendar-container">
-      <img src={car} alt="Background" className="background-image" />
+      {/* <img src={car} alt="Background" className="background-image" /> */}
       <div>
         <div className="calendar-nav">
           <button onClick={handlePrevMonth}>Prev</button>

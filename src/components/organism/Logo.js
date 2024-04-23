@@ -7,7 +7,6 @@ import php from "../../images/logo/3.png";
 import node from "../../images/logo/node.png";
 import sql from "../../images/logo/sql.png";
 import mongo from "../../images/logo/mongo.png";
-
 import "../Styles/Logo.css";
 
 export default function Logo() {

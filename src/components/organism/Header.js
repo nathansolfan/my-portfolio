@@ -1,27 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
 import "../Styles/Header.css";
 import nathan from "../../images/nathan1.webp";
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 0;
-      setScrolled(isScrolled);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    // Clean up the event listener when the component unmounts
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
 
   return (
-    <header className={`header ${scrolled ? "scrolled" : "transparent"}`}>
-      <nav className="navbar">
-        <img src={nathan} alt="" />
+    <header className="header">
+      <div className="navbar">
+        <img src={nathan} alt="Logo" />
+
         <ul className="nav-list">
           <li className="nav-item">
             <Link to="/" className="nav-link">
@@ -44,19 +39,22 @@ export default function Header() {
             </Link>
           </li>
         </ul>
-        <ul className="nav-list">
-          <li className="nav-item">
-            <Link to="/find-booking" className="nav-link">
+        <div className="account-action">
+          <button onClick={toggleDropdown} className="nav-link">
+            <FontAwesomeIcon icon={dropdownOpen ? faTimes : faBars} />{" "}
+            {/* Toggle icons */}
+          </button>
+          <div className={`dropdown-menu ${dropdownOpen ? "show" : ""}`}>
+            <Link to="/register" className="nav-link">
               Register
             </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/calendar" className="nav-link">
+            <Link to="/login" className="nav-link">
               Login
             </Link>
-          </li>
-        </ul>
-      </nav>
+            {/* Add more links if needed */}
+          </div>
+        </div>
+      </div>
     </header>
   );
 }

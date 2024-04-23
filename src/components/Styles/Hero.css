@@ -1,16 +1,11 @@
 /* Hero.css */
-.home-container img {
-  max-width: 100%;
-
-}
-
 .hero-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: baseline;
+  align-items: baseline;
   height: 100vh;
-  background: linear-gradient(rgba(3, 91, 184, 0.8), rgba(0, 36, 74, 0.8)) center/cover no-repeat;
-  color: #fff;
+  background: url('../../images/nathan1.webp') center/cover no-repeat; /* Adjust the path as necessary */  
+  color: #0c0c0c;
   text-align: center;
   padding: 20px;
   box-sizing: border-box;
@@ -20,7 +15,7 @@
 .hero-items {
   display: flex; /* Using flexbox */
   justify-content: space-around; /* Space between text and image */
-  align-items: center; /* Vertically center items */
+  align-items: end; /* Vertically center items */
   max-width: 1000px; /* Adjust width as needed */
   width: 100%; /* Use full available width */
   z-index: 2;
@@ -79,4 +74,10 @@
 
 .hero-button:hover {
   background-color: #0056b3;
+}
+@media (max-width: 768px) {
+  .hero-container {
+    background-position: top center;  /* Adjusts the focal point on smaller screens */
+    padding: 10px;  /* Reduces padding on smaller devices */
+  }
 }

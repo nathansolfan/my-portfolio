@@ -1,21 +1,23 @@
 import React from "react";
 import "../Styles/Cards.css";
 
-import image from "../../images/picnr1.webp";
-import image2 from "../../images/picnr2.webp";
-
 export default function Cards() {
   return (
     <section className="section-container">
       <div className="section-box">
-        <h2>Journey to coding:</h2>
-        <img src={image} alt="" />
+        <a href="#" className="card">
+          <div className="img-div">.stacked--left</div>
+          <h2>Journey to coding:</h2>
+        </a>
       </div>
 
       <div className="section-box">
-        <h2>Learning the structure</h2>
-        <img src={image2} alt="" />
+        <a href="#" className="card">
+          <div className="img-div">.stacked--right</div>
+          <h2>Learning the structure</h2>
+        </a>
       </div>
+      {/* Repeat for other cards as needed */}
     </section>
   );
 }
