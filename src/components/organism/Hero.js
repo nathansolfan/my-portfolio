@@ -17,7 +17,7 @@ export default function Hero() {
         style={{ backgroundImage: `url(${image2})` }}
       >
         <Draggable bounds="parent">
-          <div style={{ position: "absolute" }} className="hero-items">
+          <div className="hero-items" style={{ position: "absolute" }}>
             <div>
               <h1>NATHAN FERREIRA</h1>
               <p>
