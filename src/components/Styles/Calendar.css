@@ -1,37 +1,25 @@
 /* Global styles for the calendar */
 .calendar-container {
- 
   text-align: center;
   padding: 1rem;
-  background-color: rgba(248, 248, 248, 0.6); /* Adjust the alpha value to increase/decrease transparency */
+  background-color: rgba(248, 248, 248, 0.85); /* More opacity for better readability */
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Lighter shadow for a softer look */
   width: 90%;
   max-width: 500px;
-  margin: 75px auto;
-}
-
-.background-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;  /* Ensures the image can stretch up to the full width of its container */
-  height: 100%; /* Ensures the image can stretch up to the full height of its container */
-  z-index: -1; /* Ensure it stays behind other content */
-  object-fit: contain; /* Fit the image within the container without cropping */
-  object-position: center; /* Center the image within the container */
+  margin: 50px auto; /* Adjusted for better vertical spacing */
 }
 
 .calendar-nav {
-  margin-bottom: 25px;
+  margin-bottom: 20px; /* Reduced for tighter layout */
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .calendar-nav button {
-  padding: 0.625rem 1.25rem;
-  font-size: 1rem;
+  padding: 0.5rem 1rem; /* Smaller padding */
+  font-size: 0.9rem; /* Smaller font size */
   background-color: #007bff;
   color: white;
   border: none;
@@ -45,18 +33,18 @@
 }
 
 .month-year {
-  font-size: 1.5rem;
+  font-size: 1.4rem; /* Slightly smaller for consistency */
   color: #333;
 }
 
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
+  gap: 8px; /* Smaller gaps */
 }
 
 .calendar-day {
-  padding: 10px;
+  padding: 8px; /* Reduced padding for more space */
   background-color: #fff;
   border: 1px solid #ddd;
   min-height: 40px;
@@ -75,20 +63,18 @@
   background-color: #ff8c00;
   color: white;
 }
-.grid-time {
-  display: flex;
-  justify-content: space-between;
-}
 
-/* Media Queries for Responsive Adjustments */
+
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .calendar-container {
-    max-width: 95%;
-    padding: 10px;
+    max-width: 100%;
+    padding: 15px;
   }
 
   .month-year, .calendar-nav button {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 
   .calendar-grid {
@@ -96,19 +82,17 @@
   }
 
   .calendar-day {
-    padding: 8px;
-    font-size: 0.8rem;
+    padding: 6px;
+    font-size: 0.75rem;
   }
 
   .contact-info input, .comments-section textarea, .time-slot {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 }
 
-/* Adjustments for CONTACT */
-
 .contact-info, .comments-section {
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 10px;
   background-color: #f4f4f4;
   border-radius: 8px;
@@ -116,7 +100,7 @@
 }
 
 .contact-info input, .comments-section textarea {
-  width: 100%;
+  width: 80%;
   padding: 8px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
@@ -139,5 +123,3 @@ button {
 button:hover {
   background-color: #218838;
 }
-
-

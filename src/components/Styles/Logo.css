@@ -5,7 +5,7 @@
   justify-content: center;  
   gap: 20px;
   opacity: 0;
-  transition: opacity 3s ease, transform 3s ease;
+  transition: opacity 1s ease, transform 1s ease; /* Faster transition might feel more responsive */
 }
 
 .logo.reveal  {
@@ -20,7 +20,19 @@
   transition: transform 0.75s ease; /* Smooth transition for the transform property */
 }
 
+.logo img:active {
+  transform: scale(1.25); /* Ensures touch devices also show feedback */
+}
+
 
 .logo img:hover {
   transform: scale(1.25); /* Slightly enlarge logos on hover */
+}
+
+@media (max-width: 768px) {
+  .logo {
+    display: flex;
+    flex-wrap: wrap;
+      gap: 10px;  /* Smaller gap */
+  }
 }
