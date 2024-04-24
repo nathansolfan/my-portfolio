@@ -11,7 +11,7 @@ import Cards from "../molecule/Cards";
 
 export default function Hero() {
   return (
-    <div className="home-container">
+    <div className="hero-items react-draggable react-draggable-dragged">
       <div className="hero-container">
         <Draggable bounds="parent">
           <div className="hero-items" style={{ position: "absolute" }}>

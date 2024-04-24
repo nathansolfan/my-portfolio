@@ -44,16 +44,16 @@ export default function Header() {
             <FontAwesomeIcon icon={dropdownOpen ? faTimes : faBars} />{" "}
             {/* Toggle icons */}
           </button>
-          <div className={`dropdown-menu ${dropdownOpen ? "show" : ""}`}>
-            <Link to="/register" className="nav-link">
-              Register
-            </Link>
-            <Link to="/login" className="nav-link">
-              Login
-            </Link>
-            {/* Add more links if needed */}
-          </div>
         </div>
+      </div>
+      <div className={`dropdown-menu ${dropdownOpen ? "show" : ""}`}>
+        <Link to="/register" className="nav-link">
+          Register
+        </Link>
+        <Link to="/login" className="nav-link">
+          Login
+        </Link>
+        {/* Add more links if needed */}
       </div>
     </header>
   );

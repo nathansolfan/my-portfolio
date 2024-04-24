@@ -1,0 +1,9 @@
+.about-cointaner {
+    float: left;
+    width: 600px;
+    height: 600px;
+    margin: 20px;
+    shape-outside: circle(50% at 30%);
+    clip-path: circle(50% at 0%);
+    background: lightblue;
+}
