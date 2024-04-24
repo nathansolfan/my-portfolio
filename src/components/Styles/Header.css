@@ -1,8 +1,7 @@
 .header {
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;  
   padding: 10px 20px;
   background-color: transparent;
   transition: all 0.3s ease;
@@ -11,12 +10,15 @@
 .navbar {
   display: flex;
   align-items: center;
+  
 }
 
 .nav-list {
+  
   list-style: none;
   display: flex;
   padding-left: 0;
+  
 }
 
 .nav-item {
@@ -44,9 +46,14 @@
 @media (max-width: 768px) {
   .nav-list {
     display: block;
+    
   }
 
   .nav-item {
     padding: 10px;
   }
+}
+
+.account-action {
+  
 }
