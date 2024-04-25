@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import BookingChange from "../molecule/BookingChange"; // Ensure correct import
 import supabase from "../../service/supabaseService"; // Adjust the import path as necessary
+import "../Styles/Booking.css";
 
 export default function EmailInput() {
   const [email, setEmail] = useState("");
@@ -42,8 +43,9 @@ export default function EmailInput() {
   };
 
   return (
-    <div>
+    <div className="list-container">
       <form
+        className="email-container"
         onSubmit={(e) => {
           e.preventDefault();
           fetchBookingDetails(email);
