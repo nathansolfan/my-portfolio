@@ -19,5 +19,9 @@ export default function TimePicker({ pickupTime, setPickupTime }) {
       },
     });
   }, [pickupTime, setPickupTime]);
-  return <input ref={timeInputRef} className="flatpickr-input" />;
+  return (
+    <div>
+      <input ref={timeInputRef} />
+    </div>
+  );
 }

@@ -63,11 +63,11 @@ function BookingChange({ booking, onUpdate, refreshBookings }) {
   // flatpickr
 
   return (
-    <div className="booking-container">
-      <h3>Booking Details:</h3>
-      <div className="booking-box">
+    <div className="BookingDetails-container">
+      <div className="details-container">
+        <h3>Booking Details:</h3>
         <input
-          className="booking-item"
+          className="details-item"
           type="text"
           value={
             bookingData.date
@@ -78,55 +78,55 @@ function BookingChange({ booking, onUpdate, refreshBookings }) {
           onClick={toggleDateSelector} // Add this line
           placeholder="Select a Date"
         />
-        <DateSelector
-          visible={dateSelectorVisible}
-          onSelectDate={handleDateSelect}
+      </div>
+      <DateSelector
+        visible={dateSelectorVisible}
+        onSelectDate={handleDateSelect}
+      />
+      <div className="time-container">
+        <h3>Pick-Up Time:</h3>
+        <TimePicker pickupTime={pickupTime} setPickupTime={setPickupTime} />
+      </div>
+      <div className="item-container">
+        <input
+          className="booking-item"
+          type="text"
+          value={bookingData.name}
+          onChange={(e) =>
+            setBookingData((prev) => ({ ...prev, name: e.target.value }))
+          }
+          placeholder="Name"
         />
-        <div>
-          <h3>Pick-Up Time:</h3>
-          <TimePicker pickupTime={pickupTime} setPickupTime={setPickupTime} />
-        </div>
-        <div className="item-container">
-          <input
-            className="booking-item"
-            type="text"
-            value={bookingData.name}
-            onChange={(e) =>
-              setBookingData((prev) => ({ ...prev, name: e.target.value }))
-            }
-            placeholder="Name"
-          />
-          <input
-            className="booking-item"
-            type="email"
-            value={bookingData.email}
-            onChange={(e) =>
-              setBookingData((prev) => ({ ...prev, email: e.target.value }))
-            }
-            placeholder="Email"
-          />
-          <input
-            className="booking-item"
-            type="tel"
-            value={bookingData.phone}
-            onChange={(e) =>
-              setBookingData((prev) => ({ ...prev, phone: e.target.value }))
-            }
-            placeholder="Phone"
-          />
-          <textarea
-            className="booking-item"
-            value={bookingData.comments}
-            onChange={(e) =>
-              setBookingData((prev) => ({ ...prev, comments: e.target.value }))
-            }
-            placeholder="Comments"
-          />
-        </div>
-        <div className="button">
-          <button onClick={handleSubmit}>Update Booking</button>
-          <DeleteBooking bookingId={booking.id} onDelete={handleDelete} />
-        </div>
+        <input
+          className="booking-item"
+          type="email"
+          value={bookingData.email}
+          onChange={(e) =>
+            setBookingData((prev) => ({ ...prev, email: e.target.value }))
+          }
+          placeholder="Email"
+        />
+        <input
+          className="booking-item"
+          type="tel"
+          value={bookingData.phone}
+          onChange={(e) =>
+            setBookingData((prev) => ({ ...prev, phone: e.target.value }))
+          }
+          placeholder="Phone"
+        />
+        <textarea
+          className="booking-item"
+          value={bookingData.comments}
+          onChange={(e) =>
+            setBookingData((prev) => ({ ...prev, comments: e.target.value }))
+          }
+          placeholder="Comments"
+        />
+      </div>
+      <div className="button">
+        <button onClick={handleSubmit}>Update Booking</button>
+        <DeleteBooking bookingId={booking.id} onDelete={handleDelete} />
       </div>
     </div>
   );
