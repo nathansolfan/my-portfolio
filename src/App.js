@@ -6,6 +6,7 @@ import About from "./components/organism/About";
 import EmailInput from "./components/organism/EmailInput";
 import Logo from "./components/organism/Logo";
 import "./index.css";
+import BoxSizing from "./components/molecule/BoxSizing";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/find-booking" element={<EmailInput />} />
           <Route path="/calendar" element={<Calendar />} />
+          <Route path="/box" element={<BoxSizing />} />
         </Routes>
 
         <footer></footer>

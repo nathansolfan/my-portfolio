@@ -38,6 +38,11 @@ export default function Header() {
               Calendar
             </Link>
           </li>
+          <li className="nav-item">
+            <Link to="/box" className="nav-link">
+              Box
+            </Link>
+          </li>
         </ul>
         <div className="account-action">
           <button onClick={toggleDropdown} className="nav-link">
