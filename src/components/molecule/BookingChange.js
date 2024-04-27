@@ -63,7 +63,7 @@ function BookingChange({ booking, onUpdate, refreshBookings }) {
   // flatpickr
 
   return (
-    <div className="BookingDetails-container">
+    <div className="booking-details-container">
       <div className="details-container">
         <h3>Booking Details:</h3>
         <input
@@ -115,14 +115,15 @@ function BookingChange({ booking, onUpdate, refreshBookings }) {
           }
           placeholder="Phone"
         />
-        <textarea
-          className="booking-item"
-          value={bookingData.comments}
-          onChange={(e) =>
-            setBookingData((prev) => ({ ...prev, comments: e.target.value }))
-          }
-          placeholder="Comments"
-        />
+        <div className="booking-item">
+          <textarea
+            value={bookingData.comments}
+            onChange={(e) =>
+              setBookingData((prev) => ({ ...prev, comments: e.target.value }))
+            }
+            placeholder="Comments"
+          />
+        </div>
       </div>
       <div className="button">
         <button onClick={handleSubmit}>Update Booking</button>
