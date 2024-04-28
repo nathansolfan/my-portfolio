@@ -50,16 +50,16 @@
     padding: 20px;    
     background-color: rgba(248, 248, 248, 0.9); /* More opacity for better readability */
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    box-shadow: 0 2px 4px rgba(134, 134, 134, 0.5);
 }
 
-.booking-item {    
+.booking-item { 
     margin-top: 10px;
     padding: 10px;
-  
-
     font-family: "Ubuntu", sans-serif;
     transition: transform 0.75s ease; /* Smooth transition for interactions */
+    border: 1px solid #ccc;
+
 }
 
 
@@ -74,6 +74,6 @@ transform: scale(1.005);}
     padding: 20px;    
     background-color: rgba(248, 248, 248, 0.9); /* More opacity for better readability */
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    box-shadow: 0 2px 4px rgba(134, 134, 134, 0.5);
 
 }
