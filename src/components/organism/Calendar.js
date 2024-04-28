@@ -151,7 +151,9 @@ export default function Calendar() {
               placeholder="Add any special requests or comments here..."
             ></textarea>
           </div>
-          <button onClick={handleSubmit}>Submit</button>
+          <button className="calendar-button" onClick={handleSubmit}>
+            Submit
+          </button>
         </>
       )}
     </div>

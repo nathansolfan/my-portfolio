@@ -1,25 +1,16 @@
 .header {
-  width: 100%;
   display: flex;
-  justify-content: center;  
-  padding: 10px 20px;
+  justify-content: flex-end;    
+  padding: 15px 0px;
   background-color: transparent;
   transition: all 0.3s ease;
 }
 
-.navbar {
-  display: flex;
-  align-items: center;
-  
-  
-}
 
-.nav-list {
-  
+.nav-list {  
   list-style: none;
   display: flex;
-  padding-left: 0;
-  
+  padding-left: 0;  
 }
 
 .nav-item {
@@ -56,5 +47,18 @@
 }
 
 .account-action {
+  display: flex;
+  justify-content: end;
+}
 
+.header-button {
+  margin-top: 0px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }

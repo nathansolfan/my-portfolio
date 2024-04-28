@@ -14,43 +14,42 @@ export default function Header() {
 
   return (
     <header className="header">
-      <div className="navbar">
-        {/* <img src={nathan} alt="Logo" /> */}
+      {/* <img src={nathan} alt="Logo" /> */}
 
-        <ul className="nav-list">
-          <li className="nav-item">
-            <Link to="/" className="nav-link">
-              Home
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/about" className="nav-link">
-              About
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/find-booking" className="nav-link">
-              List
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/calendar" className="nav-link">
-              Calendar
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/box" className="nav-link">
-              Box
-            </Link>
-          </li>
-        </ul>
-        <div className="account-action">
-          <button onClick={toggleDropdown} className="nav-link">
-            <FontAwesomeIcon icon={dropdownOpen ? faTimes : faBars} />{" "}
-            {/* Toggle icons */}
-          </button>
-        </div>
+      <ul className="nav-list">
+        <li className="nav-item">
+          <Link to="/" className="nav-link">
+            Home
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/about" className="nav-link">
+            About
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/find-booking" className="nav-link">
+            List
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/calendar" className="nav-link">
+            Calendar
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/box" className="nav-link">
+            Box
+          </Link>
+        </li>
+      </ul>
+      <div className="account-action">
+        <button onClick={toggleDropdown} className="header-button">
+          <FontAwesomeIcon icon={dropdownOpen ? faTimes : faBars} />{" "}
+          {/* Toggle icons */}
+        </button>
       </div>
+
       <div className={`dropdown-menu ${dropdownOpen ? "show" : ""}`}>
         <Link to="/register" className="nav-link">
           Register
@@ -58,7 +57,6 @@ export default function Header() {
         <Link to="/login" className="nav-link">
           Login
         </Link>
-        {/* Add more links if needed */}
       </div>
     </header>
   );

@@ -109,7 +109,7 @@
 }
 
 /* Button Styles */
-button {
+.calendar-button {
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 1rem;
@@ -121,6 +121,6 @@ button {
   transition: background-color 0.3s;
 }
 
-button:hover {
+.calendar-button:hover {
   background-color: #218838;
 }
