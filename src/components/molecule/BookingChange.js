@@ -88,6 +88,7 @@ function BookingChange({ booking, onUpdate, refreshBookings }) {
         <TimePicker pickupTime={pickupTime} setPickupTime={setPickupTime} />
       </div>
       <div className="item-container">
+        Your name:
         <input
           className="booking-item"
           type="text"
@@ -97,6 +98,7 @@ function BookingChange({ booking, onUpdate, refreshBookings }) {
           }
           placeholder="Name"
         />
+        Your email:
         <input
           className="booking-item"
           type="email"
@@ -106,6 +108,7 @@ function BookingChange({ booking, onUpdate, refreshBookings }) {
           }
           placeholder="Email"
         />
+        Your phone:
         <input
           className="booking-item"
           type="tel"
@@ -115,16 +118,19 @@ function BookingChange({ booking, onUpdate, refreshBookings }) {
           }
           placeholder="Phone"
         />
-        <div className="booking-item">
-          <textarea
-            value={bookingData.comments}
-            onChange={(e) =>
-              setBookingData((prev) => ({ ...prev, comments: e.target.value }))
-            }
-            placeholder="Comments"
-          />
-        </div>
       </div>
+      <div className="comments-container">
+        Your comments:
+        <textarea
+          className="booking-item"
+          value={bookingData.comments}
+          onChange={(e) =>
+            setBookingData((prev) => ({ ...prev, comments: e.target.value }))
+          }
+          placeholder="Comments"
+        />
+      </div>
+
       <div className="button">
         <button onClick={handleSubmit}>Update Booking</button>
         <DeleteBooking bookingId={booking.id} onDelete={handleDelete} />
