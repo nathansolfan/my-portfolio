@@ -125,10 +125,12 @@ export default function Calendar() {
             <h3>Pick-Up Location</h3>
             <input
               type="text"
-              name="name"
+              name="pickupLocation"
               placeholder="Pick up Location"
               value={locations.pickupLocation}
-              onChange={setLocations}
+              onChange={(e) =>
+                setLocations({ ...locations, [e.target.name]: e.target.value })
+              }
             />
           </div>
           <div>
