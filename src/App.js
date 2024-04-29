@@ -25,7 +25,7 @@ function App() {
           <Route path="/box" element={<BoxSizing />} />
         </Routes>
 
-        <footer></footer>
+        <footer>Footer</footer>
       </div>
     </Router>
   );

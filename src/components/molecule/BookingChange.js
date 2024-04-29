@@ -131,8 +131,10 @@ function BookingChange({ booking, onUpdate, refreshBookings }) {
         />
       </div>
 
-      <div className="button">
-        <button onClick={handleSubmit}>Update Booking</button>
+      <div className="change-container">
+        <button className="calendar-button" onClick={handleSubmit}>
+          Update Booking
+        </button>
         <DeleteBooking bookingId={booking.id} onDelete={handleDelete} />
       </div>
     </div>

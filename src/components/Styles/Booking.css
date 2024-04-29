@@ -1,7 +1,9 @@
 :root {
     --spacing-unit: 10px;
-    --container-width: 70%;
+    --container-width: 70%;   
 }
+
+
 
 .list-container {
     display: flex;
@@ -13,17 +15,16 @@
 
 .email-container {
     display: flex;
-    flex-direction: column;  
-
-    
+    flex-direction: column;      
     justify-content: center; /* Centers children horizontally */
     align-items: center; /* Centers children vertically */
+    margin-bottom: 15px;
 }
 
 .booking-details-container {
     background-color: rgba(248, 248, 248, 0.9);
-    /* resizing  */
-    width: 60%;
+    /* resizing  for cellphone*/
+    width: 90%;
     /* full screen */
     max-width: 500px;
     display: flex;
@@ -58,6 +59,7 @@
     padding: 10px;
     font-family: "Ubuntu", sans-serif;
     transition: transform 0.75s ease; /* Smooth transition for interactions */
+    border-radius: 5px;
     border: 1px solid #ccc;
 
 }
@@ -75,5 +77,10 @@ transform: scale(1.005);}
     background-color: rgba(248, 248, 248, 0.9); /* More opacity for better readability */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(134, 134, 134, 0.5);
+}
 
+.change-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
 }

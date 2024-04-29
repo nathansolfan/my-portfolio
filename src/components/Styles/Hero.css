@@ -11,10 +11,9 @@
   position: relative;
   width: 100%;
   overflow: hidden; /* Ensures no overflow of background image */
+  
 }
 /* clip-path: polygon(30% 0, 82% 2%, 73% 32%, 96% 71%, 92% 97%, 50% 100%, 30% 86%, 3% 95%, 11% 47%, 4% 17%); */
-
-
 
 .hero-items {
   z-index: 2;
@@ -34,6 +33,26 @@
 
 .hero-button:hover {
   background-color: #0056b3;
+}
+
+h1:hover {
+  color: #3498db;
+  transition: color 0.3s;
+}
+
+p:hover {
+  background-color: #f8f9fa;
+  transition: background-color 0.5s;
+}
+
+.hero-items:active {
+  cursor: grabbing;  
+}
+
+
+
+.hero-container:hover .hero-items {
+  transform: scale(1.05); /* Slightly enlarges the items on hover */
 }
 
 

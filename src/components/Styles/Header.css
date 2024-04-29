@@ -1,16 +1,22 @@
 .header {
   display: flex;
-  justify-content: flex-end;    
-  padding: 15px 0px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 5px 15px; /* Increased side padding for better spacing */
   background-color: transparent;
+  min-height: 50px; /* Ensures a consistent height */
+  align-items: center; /* Centers items vertically */
   transition: all 0.3s ease;
 }
 
 
 .nav-list {  
-  list-style: none;
   display: flex;
-  padding-left: 0;  
+  justify-content: center; /* Centers navigation items */
+  list-style: none;
+  flex-grow: 1; /* Allows it to expand and push account actions to the right */
+  margin: 10px; /* Removes default margin */
+  padding: 0; /* Removes default padding */
 }
 
 .nav-item {
@@ -20,24 +26,21 @@
 .nav-link {
   color: white;
   text-decoration: none;
+  display: block; /* Makes the entire area clickable */
+  padding: 10px 5px; /* Larger area for easier touch */
 }
 
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  right: 20px;
-  background-color: #007bff;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  z-index: 1;
+.nav-link:hover, .nav-link:focus {
+  background-color: rgba(255, 255, 255, 0.2); /* Subtle hover effect */
 }
 
-.dropdown-menu.show {
-  display: block;
-}
+
 
 @media (max-width: 768px) {
   .nav-list {
-    display: block;
+    flex-direction: row; /* Stacks items vertically */
+    align-items: center; /* Center align items when stacked */
+    padding: 0;
     
   }
 
@@ -52,7 +55,7 @@
 }
 
 .header-button {
-  margin-top: 0px;
+  margin-top: 5px;
   padding: 10px 20px;
   font-size: 1rem;
   background-color: #28a745;
@@ -61,4 +64,17 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 20px;
+  background-color: #007bff;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-menu.show {
+  display: block;
 }

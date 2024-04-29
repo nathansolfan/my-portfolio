@@ -5,12 +5,13 @@
   background-color: rgba(248, 248, 248, 0.85); /* More opacity for better readability */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Lighter shadow for a softer look */
-  width: 90%;
+  width: 85%;
   max-width: 500px;
-  margin: 50px auto; /* Adjusted for better vertical spacing */
+  margin: 40px auto; /* Adjusted for better vertical spacing */
 }
 
 .calendar-nav {
+  
   margin-bottom: 20px; /* Reduced for tighter layout */
   display: flex;
   justify-content: space-between;
@@ -100,7 +101,7 @@
 }
 
 .contact-info input, .comments-section textarea {
-  width: 80%;
+  width: 85%;
   padding: 12.5px;
   margin-top: 10px;
   margin-bottom: 15px;
@@ -110,7 +111,7 @@
 
 /* Button Styles */
 .calendar-button {
-  margin-top: 20px;
+  margin-top: 15px;
   padding: 10px 20px;
   font-size: 1rem;
   background-color: #28a745;

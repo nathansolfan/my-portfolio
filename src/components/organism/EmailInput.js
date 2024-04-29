@@ -52,13 +52,16 @@ export default function EmailInput() {
         }}
       >
         <input
+          className="booking-item"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email to find booking"
+          placeholder="Enter email to find booking"
           required
         />
-        <button type="submit">Find Booking</button>
+        <button className="calendar-button" type="submit">
+          Find Booking
+        </button>
       </form>
 
       {loading && <div>Loading...</div>}
