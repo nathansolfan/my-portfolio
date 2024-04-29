@@ -121,6 +121,19 @@ export default function Calendar() {
             <h3>Pick-Up Time:</h3>
             <TimePicker pickupTime={pickupTime} setPickupTime={setPickupTime} />
           </div>
+          <div>
+            <h3>Pick-Up Location</h3>
+            <input
+              type="text"
+              name="name"
+              placeholder="Pick up Location"
+              value={locations.pickupLocation}
+              onChange={setLocations}
+            />
+          </div>
+          <div>
+            <h3>Drop-Up Location</h3>
+          </div>
           <div className="contact-info">
             <input
               type="text"

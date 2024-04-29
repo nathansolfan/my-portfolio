@@ -11,8 +11,8 @@ import Cards from "../molecule/Cards";
 
 export default function Hero() {
   return (
-    <div className="hero-items react-draggable react-draggable-dragged">
-      <div className="hero-container">
+    <main className="hero-items react-draggable react-draggable-dragged">
+      <section className="hero-container">
         <Draggable bounds="parent">
           <div className="hero-items" style={{ position: "absolute" }}>
             <div>
@@ -27,11 +27,11 @@ export default function Hero() {
             </div>
           </div>
         </Draggable>
-      </div>
-      <div>
+      </section>
+      <section>
         <Cards />
         <Logo />
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
