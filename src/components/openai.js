@@ -41,6 +41,7 @@ export default function openai() {
         onChange={(e) => setInput(e.target.value)}
       />
       <button onClick={sendMessage}>Send</button>
+      <p></p>
     </div>
   );
 }
