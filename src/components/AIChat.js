@@ -43,6 +43,7 @@ export default function AIChat() {
         <button type="submit">Send</button>
       </form>
       {response && <div>Response: {response}</div>}
+      <p> </p>
     </div>
   );
 }
