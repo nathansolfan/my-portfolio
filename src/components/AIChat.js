@@ -8,13 +8,20 @@ export default function AIChat() {
   const handleInputChange = async (e) => {
     e.preventDefault();
 
-    const apiKey = process.env.REACT_APP_OPENAI_API_KEY; // Ensure this matches your .env file
     try {
       // Example of how you might adjust your axios POST request in React
       axios
-        .post("http://yourserver.com/proxy.php", { prompt: prompt })
+        .post(
+          "http://yourserver.com/proxy.php",
+          { prompt: prompt },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
         .then((response) => {
-          setResponses(response.data.story);
+          setResponses([...responses, response.data.story]); // Accumulate stories in the array
           setPrompt("");
         })
         .catch((error) => {
