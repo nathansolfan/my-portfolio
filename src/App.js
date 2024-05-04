@@ -7,6 +7,7 @@ import EmailInput from "./components/organism/EmailInput";
 import Logo from "./components/organism/Logo";
 import "./index.css";
 import BoxSizing from "./components/molecule/BoxSizing";
+import AIChat from "./components/AIChat";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/find-booking" element={<EmailInput />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/box" element={<BoxSizing />} />
+          <Route path="/aichat" element={<AIChat />} />
         </Routes>
 
         <footer>Footer</footer>

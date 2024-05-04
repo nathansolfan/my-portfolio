@@ -18,6 +18,11 @@ export default function Header() {
 
       <ul className="nav-list">
         <li className="nav-item">
+          <Link to="/aichat" className="nav-link">
+            Chat
+          </Link>
+        </li>
+        <li className="nav-item">
           <Link to="/" className="nav-link">
             Home
           </Link>
