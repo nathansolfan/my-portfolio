@@ -1,0 +1,37 @@
+nathan 123 
+igor 124
+nathan 567
+
+const person = {
+    'nathan': 123,
+    'igor': 124,
+    'nathan': 567
+} 
+
+
+Datas structurein JS
+String - Integer - Array - Objeto 
+
+
+
+1 == '1' true
+1 === '1' false
+
+let
+const
+var
+
+function() {
+    
+    let b = 2;
+    function () {
+        
+        var a = 1;
+        const c = 3
+    }
+  
+}
+console.log(a,b,c);
+
+
+"hello world".equals("cat")
