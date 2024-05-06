@@ -12,7 +12,7 @@ export default function AIChat() {
       // Example of how you might adjust your axios POST request in React
       axios
         .post(
-          "http://yourserver.com/proxy.php",
+          "http://localhost:8000/proxy.php",
           { prompt: prompt },
           {
             headers: {
