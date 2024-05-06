@@ -1,8 +1,12 @@
 <?php
 header("Content-Type: application/json");
-header("Access-Control-Allow-Origin: *"); // Adjust in production for security
-header("Access-Control-Allow-Methods: POST");
-header("Access-Control-Allow-Headers: Content-Type");
+header("Access-Control-Allow-Origin: http://localhost:3000"); // Specify and match the port of your React app
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    exit; // Just exit with status 200 if this is a preflight OPTIONS request
+}
 
 $apiKey = getenv('OPENAI_API_KEY'); // Ensure your API key is set in your environment variables
 
