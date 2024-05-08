@@ -45,7 +45,9 @@ export default function AIChat() {
       {responses.map((response, index) => (
         <div key={index}>Response: {response}</div>
       ))}
-      <p>Works?</p>
+      <div>
+        <h2></h2>
+      </div>
     </div>
   );
 }
