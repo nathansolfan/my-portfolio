@@ -46,7 +46,11 @@ export default function AIChat() {
         <div key={index}>Response: {response}</div>
       ))}
       <div>
-        <h2></h2>
+        <h2>
+          <p>
+            <section></section>
+          </p>
+        </h2>
       </div>
     </div>
   );
