@@ -9,15 +9,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-// $apiKey = getenv('OPENAI_API_KEY');
 $data = json_decode(file_get_contents('php://input'), true);
 
 if (!empty($data['prompt'])) {
     $url = "https://api.openai.com/v1/chat/completions";
+    $model = "gpt-3.5-turbo"; // Specify the model here
+
     $payload = json_encode([
+        'model' => $model, // Include model in the payload
         'prompt' => $data['prompt'],
         'max_tokens' => 150
     ]);
+    error_log('Using API Key: ' . $apiKey);
 
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
