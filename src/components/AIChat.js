@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./Styles/AIChat.css";
 
 export default function AIChat() {
   const [prompt, setPrompt] = useState("");
@@ -33,9 +34,10 @@ export default function AIChat() {
   };
 
   return (
-    <div>
+    <div className="chat-container">
       <form onSubmit={handleInputChange}>
         <textarea
+          className="chat-input"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="Enter your theme or start of a story..."
