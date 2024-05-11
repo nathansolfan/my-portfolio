@@ -14,10 +14,16 @@ $data = json_decode(file_get_contents('php://input'), true);
 if (!empty($data['prompt'])) {
     $url = "https://api.openai.com/v1/chat/completions";
     $model = "gpt-3.5-turbo"; // Specify the model here
+    $messages = [
+        [
+            'role' => 'user',
+            'content' => $data['prompt']
+        ]
+    ];
 
     $payload = json_encode([
         'model' => $model, // Include model in the payload
-        'prompt' => $data['prompt'],
+        'messages' => $messages,
         'max_tokens' => 150
     ]);
     error_log('Using API Key: ' . $apiKey);
@@ -38,8 +44,8 @@ if (!empty($data['prompt'])) {
         echo json_encode(['error' => 'Curl error: ' . curl_error($ch)]);
     } else {
         $decoded = json_decode($response, true);
-        if (isset($decoded['choices'][0]['text'])) {
-            echo json_encode(['story' => $decoded['choices'][0]['text']]);
+        if (!empty($decoded['choices']) && isset($decoded['choices'][0]['message']['content'])) {
+            echo json_encode(['story' => $decoded['choices'][0]['message']['content']]);
         } else {
             // Log the entire response to understand what's coming back
             echo json_encode([
@@ -49,6 +55,7 @@ if (!empty($data['prompt'])) {
             ]);
         }
     }
+
     curl_close($ch);
 } else {
     echo json_encode(['error' => 'No prompt provided']);
