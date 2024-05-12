@@ -5,9 +5,11 @@ import "./Styles/AIChat.css";
 export default function AIChat() {
   const [prompt, setPrompt] = useState("");
   const [responses, setResponses] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = async (e) => {
     e.preventDefault();
+    setIsLoading(true); //loading
 
     try {
       // Example of how you might adjust your axios POST request in React
@@ -24,12 +26,15 @@ export default function AIChat() {
         .then((response) => {
           setResponses([...responses, response.data.story]); // Accumulate stories in the array
           setPrompt("");
+          setIsLoading(false);
         })
         .catch((error) => {
           console.error("Failed to fetch response from PHP server", error);
+          setIsLoading(false);
         });
     } catch (error) {
       console.error("Failed to fetch response from OpenAI", error);
+      setIsLoading(false);
     }
   };
 

@@ -8,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     header("HTTP/1.1 204 No Content");
     exit;
 }
-
 $data = json_decode(file_get_contents('php://input'), true);
 
 if (!empty($data['prompt'])) {
