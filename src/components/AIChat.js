@@ -49,9 +49,14 @@ export default function AIChat() {
         ></textarea>
         <button type="submit">Tell Story</button>
       </form>
-      {responses.map((response, index) => (
-        <div key={index}>Response: {response}</div>
-      ))}
+      {isLoading ? (
+        <p> Loading...</p>
+      ) : (
+        responses.map((response, index) => (
+          <div key={index}>Response: {response}</div>
+        ))
+      )}
+
       <div>
         <p>Test</p>
       </div>
