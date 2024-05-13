@@ -50,7 +50,7 @@ export default function AIChat() {
         <button type="submit">Tell Story</button>
       </form>
       {isLoading ? (
-        <p> Loading...</p>
+        <div className="spinner"> </div>
       ) : (
         responses.map((response, index) => (
           <div key={index}>Response: {response}</div>
