@@ -14,10 +14,12 @@ $data = json_decode(file_get_contents('php://input'), true);
 if (!empty($data['prompt'])) {
     $url = "https://api.openai.com/v1/chat/completions";
     $model = "gpt-3.5-turbo"; // Specify the model here
+    $eli5Prompt = "Explain like I'm five: " . $data['prompt'];  // Prepend ELI5 request to the user's prompt
+
     $messages = [
         [
             'role' => 'user',
-            'content' => $data['prompt']
+            'content' => $eli5Prompt  // Use the modified prompt
         ]
     ];
 
