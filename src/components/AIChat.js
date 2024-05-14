@@ -7,12 +7,16 @@ export default function AIChat() {
   const [responses, setResponses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [charCount, setCharCount] = useState(0);
 
   const handleInputChange = async (e) => {
     e.preventDefault();
     setIsLoading(true); //loading
     setResponses([]); //clear previous
     setError(""); // clear previous
+
+    setPrompt(e.target.value);
+    setCharCount(e.target.value.length);
 
     try {
       // Example of how you might adjust your axios POST request in React
@@ -48,9 +52,11 @@ export default function AIChat() {
         <textarea
           className="chat-input"
           value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
+          onChange={handleInputChange}
           placeholder="Enter your theme or start of a story..."
         ></textarea>
+        <div className="char-counter">{charCount} / 500</div>{" "}
+        {/* Adjust max characters as needed */}
         <button type="submit">Tell Story</button>
       </form>
       {isLoading ? (
