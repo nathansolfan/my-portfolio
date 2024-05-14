@@ -6,11 +6,13 @@ export default function AIChat() {
   const [prompt, setPrompt] = useState("");
   const [responses, setResponses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleInputChange = async (e) => {
     e.preventDefault();
     setIsLoading(true); //loading
     setResponses([]); //clear previous
+    setError(""); // clear previous
 
     try {
       // Example of how you might adjust your axios POST request in React
@@ -35,6 +37,7 @@ export default function AIChat() {
         });
     } catch (error) {
       console.error("Failed to fetch response from OpenAI", error);
+      setError("Failed to fetch response from server. Please try again.");
       setIsLoading(false);
     }
   };
@@ -51,11 +54,16 @@ export default function AIChat() {
         <button type="submit">Tell Story</button>
       </form>
       {isLoading ? (
-        <div className="spinner"> </div>
+        <div className="spinner"></div>
       ) : (
-        responses.map((response, index) => (
-          <div key={index}>Response: {response}</div>
-        ))
+        <>
+          {responses.map((response, index) => (
+            <div key={index} className="chat-response">
+              Response: {response}
+            </div>
+          ))}
+          {error && <div className="error">{error}</div>}
+        </>
       )}
 
       <div>
