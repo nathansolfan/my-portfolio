@@ -10,6 +10,7 @@ export default function AIChat() {
   const handleInputChange = async (e) => {
     e.preventDefault();
     setIsLoading(true); //loading
+    setResponses([]); //clear previous
 
     try {
       // Example of how you might adjust your axios POST request in React
