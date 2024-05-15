@@ -77,6 +77,13 @@ export default function AIChat() {
         </button>
       </form>
 
+      <button
+        onClick={handleClearResponses}
+        disabled={isLoading || responses.length === 0}
+      >
+        Clear All Responses
+      </button>
+
       {isLoading ? (
         <div className="spinner"></div>
       ) : (
