@@ -52,6 +52,15 @@ export default function AIChat() {
     }
   };
 
+  const handleDeleteResponse = (index) => {
+    const newResponses = responses.filter((_, i) => i !== index);
+    setResponses(newResponses);
+  };
+
+  const handleClearResponses = () => {
+    setResponses([]);
+  };
+
   return (
     <div className="chat-container">
       <form onSubmit={handleFormSubmit}>
@@ -67,6 +76,7 @@ export default function AIChat() {
           Tell Story
         </button>
       </form>
+
       {isLoading ? (
         <div className="spinner"></div>
       ) : (
