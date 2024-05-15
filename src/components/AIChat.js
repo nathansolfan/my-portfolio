@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Styles/AIChat.css";
 
@@ -11,6 +11,10 @@ export default function AIChat() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [charCount, setCharCount] = useState(0);
+
+  useEffect(() => {
+    localStorage.setItem("responses", JSON.stringify(responses));
+  }, [responses]);
 
   const handleInputChange = (e) => {
     setPrompt(e.target.value);
