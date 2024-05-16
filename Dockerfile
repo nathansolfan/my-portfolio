@@ -15,3 +15,9 @@ WORKDIR /var/www/html/
 
 # Expose the port
 EXPOSE 80
+
+# Build the Docker image
+docker build -t my-php-app .
+
+# Run the Docker container
+docker run -d -p 8080:80 my-php-app
