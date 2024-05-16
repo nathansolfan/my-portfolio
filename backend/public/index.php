@@ -43,6 +43,7 @@ if (!empty($data['prompt'])) {
     $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
     if (curl_errno($ch)) {
+        error_log('Curl error: ' . curl_error($ch));
         echo json_encode(['error' => 'Curl error: ' . curl_error($ch)]);
     } else {
         $decoded = json_decode($response, true);

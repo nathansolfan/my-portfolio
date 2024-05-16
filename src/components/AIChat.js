@@ -91,6 +91,12 @@ export default function AIChat() {
           {responses.map((response, index) => (
             <div key={index} className="chat-response">
               Response: {response}
+              <button
+                className="delete-button"
+                onClick={() => handleDeleteResponse(index)}
+              >
+                Delete
+              </button>
             </div>
           ))}
           {error && <div className="error">{error}</div>}
