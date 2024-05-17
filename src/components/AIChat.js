@@ -102,9 +102,6 @@ export default function AIChat() {
           {error && <div className="error">{error}</div>}
         </>
       )}
-      <div>
-        <p>Test</p>
-      </div>
     </div>
   );
 }
