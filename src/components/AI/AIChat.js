@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Styles/AIChat.css";
+import ChatResponse from "./ChatResponse";
 
 export default function AIChat() {
   const [prompt, setPrompt] = useState("");
@@ -89,15 +90,11 @@ export default function AIChat() {
       ) : (
         <>
           {responses.map((response, index) => (
-            <div key={index} className="chat-response">
-              Response: {response}
-              <button
-                className="delete-button"
-                onClick={() => handleDeleteResponse(index)}
-              >
-                Delete
-              </button>
-            </div>
+            <ChatResponse
+              key={index}
+              response={response}
+              onDelete={() => handleDeleteResponse(index)}
+            />
           ))}
           {error && <div className="error">{error}</div>}
         </>
