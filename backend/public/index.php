@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     header("HTTP/1.1 204 No Content");
     exit;
 }
+$apiKey = getenv('OPENAI_API_KEY'); // Use environment variable for API key
 
 $data = json_decode(file_get_contents('php://input'), true);
 
