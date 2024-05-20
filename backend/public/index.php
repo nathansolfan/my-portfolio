@@ -1,13 +1,29 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php'; // Ensure this path is correct based on your project structure
+require __DIR__ . '/../../vendor/autoload.php'; // Ensure this path is correct based on your project structure
 
 use Dotenv\Dotenv;
 
 // Load .env file if it exists
-if (file_exists(__DIR__ . '/../.env')) {
-    $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+$envFilePath = __DIR__ . '/../../.env';
+if (file_exists($envFilePath)) {
+    error_log('.env file found at: ' . $envFilePath);
+    $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
     $dotenv->load();
+} else {
+    error_log('.env file not found at: ' . $envFilePath);
+    echo json_encode(['error' => '.env file not found']);
+    exit;
+}
+
+// Verify if the API key is loaded
+$apiKey = getenv('OPENAI_API_KEY');
+if (!$apiKey) {
+    error_log('API key not found in environment');
+    echo json_encode(['error' => 'API key not found in environment']);
+    exit;
+} else {
+    error_log('Loaded API Key: ' . $apiKey);
 }
 
 header("Content-Type: application/json");
@@ -20,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-$apiKey = getenv('OPENAI_API_KEY'); // Use environment variable for API key
 $data = json_decode(file_get_contents('php://input'), true);
 
 if (!empty($data['prompt'])) {
@@ -40,7 +55,6 @@ if (!empty($data['prompt'])) {
         'messages' => $messages,
         'max_tokens' => 150
     ]);
-    error_log('Using API Key: ' . $apiKey);
 
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -62,7 +76,6 @@ if (!empty($data['prompt'])) {
         if (!empty($decoded['choices']) && isset($decoded['choices'][0]['message']['content'])) {
             echo json_encode(['story' => $decoded['choices'][0]['message']['content']]);
         } else {
-            // Log the entire response to understand what's coming back
             echo json_encode([
                 'error' => 'Failed to fetch story',
                 'response' => $decoded,
