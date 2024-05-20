@@ -7,7 +7,7 @@ import EmailInput from "./components/organism/EmailInput";
 import Logo from "./components/organism/Logo";
 import "./index.css";
 import BoxSizing from "./components/molecule/BoxSizing";
-import AIChat from "./components/AIChat";
+import AIChat from "./components/AI/AIChat";
 
 function App() {
   return (

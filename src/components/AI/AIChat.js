@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./Styles/AIChat.css";
+import "../Styles/AIChat.css";
 import ChatResponse from "./ChatResponse";
 
 export default function AIChat() {
@@ -99,6 +99,7 @@ export default function AIChat() {
           {error && <div className="error">{error}</div>}
         </>
       )}
+      <div></div>
     </div>
   );
 }

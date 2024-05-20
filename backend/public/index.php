@@ -1,4 +1,15 @@
 <?php
+
+require __DIR__ . '/../vendor/autoload.php'; // Ensure this path is correct based on your project structure
+
+use Dotenv\Dotenv;
+
+// Load .env file if it exists
+if (file_exists(__DIR__ . '/../.env')) {
+    $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+    $dotenv->load();
+}
+
 header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
@@ -9,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
+$apiKey = getenv('OPENAI_API_KEY'); // Use environment variable for API key
 $data = json_decode(file_get_contents('php://input'), true);
 
 if (!empty($data['prompt'])) {
