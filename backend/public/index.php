@@ -11,7 +11,6 @@ if (file_exists($envFilePath)) {
     $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
     $dotenv->load();
     error_log('Env file loaded: ' . getenv('OPENAI_API_KEY')); // Debugging line
-
 } else {
     error_log('.env file not found at: ' . $envFilePath);
     echo json_encode(['error' => '.env file not found']);
