@@ -10,6 +10,9 @@ RUN a2enmod rewrite
 # Copy your PHP code into the Docker container
 COPY . /var/www/html/
 
+# Copy .env file into the Docker container
+COPY .env /var/www/html/.env
+
 # Set the working directory
 WORKDIR /var/www/html/
 
