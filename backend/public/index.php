@@ -1,14 +1,14 @@
 <?php
 
-require __DIR__ . '/../../vendor/autoload.php'; // Ensure this path is correct based on your project structure
+require __DIR__ . '/../vendor/autoload.php'; // Ensure this path is correct based on your project structure
 
 use Dotenv\Dotenv;
 
 // Load .env file if it exists
-$envFilePath = __DIR__ . '/../../.env';
+$envFilePath = __DIR__ . '/../.env';
 if (file_exists($envFilePath)) {
     error_log('.env file found at: ' . $envFilePath);
-    $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+    $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
     $dotenv->load();
     error_log('Env file loaded: ' . getenv('OPENAI_API_KEY')); // Debugging line
 } else {
