@@ -34,7 +34,7 @@ export default function AIChat() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/index.php",
+        "http://localhost:8080/index.php",
         { prompt: prompt },
         {
           headers: {
