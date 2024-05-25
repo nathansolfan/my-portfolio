@@ -13,7 +13,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Copy project files
 COPY backend /var/www/html/
-COPY .env /var/www/html/.env
+COPY backend/.env /var/www/html/.env
 COPY start-apache.sh /usr/local/bin/start-apache.sh
 
 # Set the working directory

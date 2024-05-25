@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import "../Styles/AIChat.css";
 import ChatResponse from "./ChatResponse";
@@ -22,35 +22,37 @@ export default function AIChat() {
     setCharCount(e.target.value.length);
   };
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    if (!prompt.trim()) {
-      setError("Prompt cannot be empty.");
-      return;
-    }
-    setIsLoading(true);
-    setResponses([]);
-    setError("");
-
+  const fetchStory = useCallback(async (prompt) => {
     try {
       const response = await axios.post(
         "http://localhost:8080/index.php",
-        { prompt: prompt },
+        { prompt },
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
-      setResponses([response.data.story]);
-      setPrompt("");
-      setCharCount(0);
-      setIsLoading(false);
+      setResponses((prevResponses) => [...prevResponses, response.data.story]);
     } catch (error) {
       console.error("Failed to fetch response from PHP server", error);
       setError("Failed to fetch response from server. Please try again.");
+    } finally {
       setIsLoading(false);
     }
+  }, []);
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    if (!prompt.trim()) {
+      setError("Prompt cannot be empty.");
+      return;
+    }
+    setIsLoading(true);
+    setError("");
+    fetchStory(prompt);
+    setPrompt("");
+    setCharCount(0);
   };
 
   const handleDeleteResponse = (index) => {
@@ -99,9 +101,6 @@ export default function AIChat() {
           {error && <div className="error">{error}</div>}
         </>
       )}
-      <div>
-        <p></p>
-      </div>
     </div>
   );
 }
