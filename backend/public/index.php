@@ -56,6 +56,8 @@ if (!empty($data['prompt'])) {
         'Content-Type: application/json',
         'Authorization: Bearer ' . $apiKey
     ]);
+    // Force HTTP/1.1
+    curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
 
     $response = curl_exec($ch);
     $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);

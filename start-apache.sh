@@ -1,9 +1,7 @@
 #!/bin/bash
-
-# Load environment variables from .env file
+# Source the .env file
 if [ -f /var/www/html/.env ]; then
-    export $(cat /var/www/html/.env | grep -v '#' | awk '/=/ {print $1}')
+    export $(cat /var/www/html/.env | xargs)
 fi
-
-# Start Apache
+# Start Apache in the foreground
 apache2-foreground

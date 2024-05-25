@@ -20,10 +20,13 @@ COPY start-apache.sh /usr/local/bin/start-apache.sh
 WORKDIR /var/www/html/
 
 # Run Composer install
-RUN composer install --no-dev --optimize-autoloader --no-interaction --working-dir=/var/www/html
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 # Set script permissions
 RUN chmod +x /usr/local/bin/start-apache.sh
+
+# Print environment variables (debugging)
+RUN printenv
 
 # Expose the port
 EXPOSE 80
