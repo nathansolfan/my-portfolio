@@ -18,8 +18,17 @@ export default function AIChat() {
   }, [responses]);
 
   const handleInputChange = (e) => {
-    setPrompt(e.target.value);
-    setCharCount(e.target.value.length);
+    const inputValue = e.target.value;
+    setPrompt(inputValue);
+    setCharCount(inputValue.length);
+
+    if (!inputValue.trim()) {
+      setError("Prompt cannot be empty.");
+    } else if (inputValue.length > 500) {
+      setError("Prompt exceeds the maximum length.");
+    } else {
+      setError("");
+    }
   };
 
   const fetchStory = useCallback(async (prompt) => {
@@ -44,12 +53,10 @@ export default function AIChat() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (!prompt.trim()) {
-      setError("Prompt cannot be empty.");
+    if (error) {
       return;
     }
     setIsLoading(true);
-    setError("");
     fetchStory(prompt);
     setPrompt("");
     setCharCount(0);
@@ -75,7 +82,7 @@ export default function AIChat() {
           maxLength={500}
         ></textarea>
         <div className="char-counter">{charCount} / 500</div>
-        <button type="submit" disabled={isLoading}>
+        <button type="submit" disabled={isLoading || error}>
           Tell Story
         </button>
       </form>
