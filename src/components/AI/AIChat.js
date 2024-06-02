@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import "../Styles/AIChat.css";
 import ChatResponse from "./ChatResponse";
+import Auth from "./Auth";
 
 export default function AIChat() {
   const [prompt, setPrompt] = useState("");
@@ -12,6 +13,7 @@ export default function AIChat() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [charCount, setCharCount] = useState(0);
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   useEffect(() => {
     localStorage.setItem("responses", JSON.stringify(responses));
@@ -31,25 +33,32 @@ export default function AIChat() {
     }
   };
 
-  const fetchStory = useCallback(async (prompt) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/index.php",
-        { prompt },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      setResponses((prevResponses) => [...prevResponses, response.data.story]);
-    } catch (error) {
-      console.error("Failed to fetch response from PHP server", error);
-      setError("Failed to fetch response from server. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
+  const fetchStory = useCallback(
+    async (prompt) => {
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/index.php",
+          { prompt },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setResponses((prevResponses) => [
+          ...prevResponses,
+          response.data.story,
+        ]);
+      } catch (error) {
+        console.error("Failed to fetch response from PHP server", error);
+        setError("Failed to fetch response from server. Please try again.");
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [token]
+  );
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -70,6 +79,17 @@ export default function AIChat() {
   const handleClearResponses = () => {
     setResponses([]);
   };
+
+  if (!token) {
+    return (
+      <Auth
+        onAuthSuccess={(token) => {
+          setToken(token);
+          localStorage.setItem("token", token);
+        }}
+      />
+    );
+  }
 
   return (
     <div className="chat-container">
