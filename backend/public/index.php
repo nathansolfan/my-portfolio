@@ -12,9 +12,12 @@ if (file_exists($envFilePath)) {
     $dotenv->load();
 }
 
-$apiKey = getenv('OPENAI_API_KEY');
-if (!$apiKey) {
-    echo json_encode(['error' => 'API key not found in environment']);
+$config = include(__DIR__ . '/config.php');
+
+$apiKey = $config['api_key'];
+$jwtSecret = getenv('JWT_SECRET');
+if (!$apiKey || !$jwtSecret) {
+    echo json_encode(['error' => 'API key or JWT secret not found in environment']);
     exit;
 }
 
@@ -28,6 +31,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
+$authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+if (preg_match('/Bearer\s(\S+)/', $authHeader, $matches)) {
+    $jwt = $matches[1];
+    try {
+        $decoded = JWT::decode($jwt, new Key($jwtSecret, 'HS256'));
+    } catch (Exception $e) {
+        echo json_encode(['error' => 'Unauthorized']);
+        exit;
+    }
+} else {
+    echo json_encode(['error' => 'Authorization header not found']);
+    exit;
+}
+
 $data = json_decode(file_get_contents('php://input'), true);
 
 if (empty($data['prompt'])) {
@@ -35,8 +52,8 @@ if (empty($data['prompt'])) {
     exit;
 }
 
-$url = "https://api.openai.com/v1/chat/completions";
-$model = "gpt-3.5-turbo";
+$url = $config['api_url'];
+$model = $config['model'];
 $eli5Prompt = "Explain like I'm five: " . $data['prompt'];
 
 $messages = [
