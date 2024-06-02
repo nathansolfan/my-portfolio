@@ -1,8 +1,11 @@
 <?php
+
 require __DIR__ . '/../vendor/autoload.php';
 
 use Dotenv\Dotenv;
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+use PDO;
 
 $envFilePath = __DIR__ . '/../.env';
 if (file_exists($envFilePath)) {
@@ -10,7 +13,6 @@ if (file_exists($envFilePath)) {
     $dotenv->load();
 }
 
-$apiKey = getenv('OPENAI_API_KEY');
 $jwtSecret = getenv('JWT_SECRET');
 
 header("Content-Type: application/json");
@@ -25,30 +27,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($data['action'])) {
-    $action = $data['action'];
+try {
+    $pdo = new PDO('sqlite:' . __DIR__ . '/../database.db');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->exec("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)");
 
-    if ($action == 'register') {
-        // Register user logic (save user to database)
-        $username = $data['username'];
-        $password = password_hash($data['password'], PASSWORD_BCRYPT);
-        // Save $username and $password to the database
-        echo json_encode(['message' => 'User registered successfully']);
-    } elseif ($action == 'login') {
-        // Login user logic (validate user from database)
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($data['action'])) {
+        $action = $data['action'];
         $username = $data['username'];
         $password = $data['password'];
-        // Fetch user from database and validate password
-        // Assuming $user is fetched from the database
-        if (password_verify($password, $user['password'])) {
-            $payload = [
-                'username' => $username,
-                'exp' => time() + 3600 // Token expires in 1 hour
-            ];
-            $token = JWT::encode($payload, $jwtSecret, 'HS256');
-            echo json_encode(['token' => $token]);
-        } else {
-            echo json_encode(['error' => 'Invalid username or password']);
+
+        if ($action == 'register') {
+            $stmt = $pdo->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+            $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+            $stmt->execute([$username, $passwordHash]);
+            echo json_encode(['message' => 'User registered successfully']);
+        } elseif ($action == 'login') {
+            $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
+            $stmt->execute([$username]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($user && password_verify($password, $user['password'])) {
+                $payload = [
+                    'username' => $username,
+                    'exp' => time() + 3600 // Token expires in 1 hour
+                ];
+                $token = JWT::encode($payload, $jwtSecret, 'HS256');
+                echo json_encode(['token' => $token]);
+            } else {
+                echo json_encode(['error' => 'Invalid username or password']);
+            }
         }
     }
+} catch (Exception $e) {
+    echo json_encode(['error' => $e->getMessage()]);
 }
