@@ -61,4 +61,5 @@ try {
     }
 } catch (Exception $e) {
     echo json_encode(['error' => $e->getMessage()]);
+    error_log($e->getMessage());
 }
