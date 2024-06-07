@@ -5,7 +5,7 @@ require __DIR__ . '/../vendor/autoload.php';
 use Dotenv\Dotenv;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
-use PDO;
+
 
 $envFilePath = __DIR__ . '/../.env';
 if (file_exists($envFilePath)) {
