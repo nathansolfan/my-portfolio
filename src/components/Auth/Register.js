@@ -8,5 +8,15 @@ export default function Register() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-  return <div>Register</div>;
+  return (
+    <div>
+      <h2>Register</h2>
+      <form>
+        <div>
+          <label htmlFor="username">Username:</label>
+          <input />
+        </div>
+      </form>
+    </div>
+  );
 }
