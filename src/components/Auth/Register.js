@@ -8,10 +8,32 @@ export default function Register() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post("http://localhost:8080/auth.php", {
+        action: "register",
+        username,
+        password,
+      });
+
+      if (response.data.message) {
+        setMessage(response.data.message);
+        setError("");
+      } else {
+        setError(response.data.error || "Registration failed");
+        setMessage("");
+      }
+    } catch (error) {
+      setError("Failed", error);
+    }
+  };
+
   return (
     <div>
       <h2>Register</h2>
-      <form>
+      <form onSubmit={handleRegister}>
         <div>
           <label htmlFor="username">Username:</label>
           <input
