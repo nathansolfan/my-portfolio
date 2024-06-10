@@ -14,7 +14,13 @@ export default function Register() {
       <form>
         <div>
           <label htmlFor="username">Username:</label>
-          <input />
+          <input
+            type="text"
+            id="username"
+            required
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
         </div>
       </form>
     </div>
