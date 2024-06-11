@@ -3,7 +3,7 @@ import axios from "axios";
 import "../Styles/Register.css"; // Import your CSS file for styling
 
 export default function Register() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -35,13 +35,24 @@ export default function Register() {
       <h2>Register</h2>
       <form onSubmit={handleRegister}>
         <div>
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="email">Email:</label>
           <input
             type="text"
-            id="username"
+            id="email"
             required
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input
+            type="text"
+            id="password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
       </form>
