@@ -56,6 +56,7 @@ export default function Register() {
           />
         </div>
       </form>
+      {message && <p className="success-message">{message}</p>}
     </div>
   );
 }
