@@ -57,6 +57,7 @@ export default function Register() {
         </div>
       </form>
       {message && <p className="success-message">{message}</p>}
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 }
