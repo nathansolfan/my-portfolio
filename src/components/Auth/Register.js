@@ -58,9 +58,7 @@ export default function Register() {
       </form>
       {message && <p className="success-message">{message}</p>}
       {error && <p className="error-message">{error}</p>}
-      <div>
-        <p></p>
-      </div>
+      <div>const user = useState()</div>
     </div>
   );
 }
