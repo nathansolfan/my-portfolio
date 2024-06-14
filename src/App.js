@@ -8,6 +8,7 @@ import Logo from "./components/organism/Logo";
 import "./index.css";
 import BoxSizing from "./components/molecule/BoxSizing";
 import AIChat from "./components/AI/AIChat";
+import Register from "./components/Auth/Register";
 
 function App() {
   return (
@@ -19,12 +20,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Hero />} />
           <Route path="/logo" element={<Logo />} />
-
           <Route path="/about" element={<About />} />
           <Route path="/find-booking" element={<EmailInput />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/box" element={<BoxSizing />} />
           <Route path="/aichat" element={<AIChat />} />
+          <Route path="/register" element={<Register />} />{" "}
+          {/* Add Register route */}
         </Routes>
 
         <footer>Footer</footer>
