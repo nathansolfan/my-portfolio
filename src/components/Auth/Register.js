@@ -55,6 +55,7 @@ export default function Register() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        <button type="submit">Register</button>
       </form>
       {message && <p className="success-message">{message}</p>}
       {error && <p className="error-message">{error}</p>}
