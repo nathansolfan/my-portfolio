@@ -26,6 +26,7 @@ export default function Register() {
       }
     } catch (error) {
       setError("Failed", error);
+      setMessage("");
     }
   };
 
