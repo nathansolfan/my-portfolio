@@ -6,7 +6,6 @@ use Dotenv\Dotenv;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-
 $envFilePath = __DIR__ . '/../.env';
 if (file_exists($envFilePath)) {
     $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
@@ -30,32 +29,32 @@ $data = json_decode(file_get_contents('php://input'), true);
 try {
     $pdo = new PDO('sqlite:' . __DIR__ . '/../database.db');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->exec("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)");
+    $pdo->exec("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, email TEXT, password TEXT)");
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($data['action'])) {
         $action = $data['action'];
-        $username = $data['username'];
+        $email = $data['email']; // Changed from username to email
         $password = $data['password'];
 
         if ($action == 'register') {
-            $stmt = $pdo->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+            $stmt = $pdo->prepare("INSERT INTO users (email, password) VALUES (?, ?)");
             $passwordHash = password_hash($password, PASSWORD_BCRYPT);
-            $stmt->execute([$username, $passwordHash]);
+            $stmt->execute([$email, $passwordHash]);
             echo json_encode(['message' => 'User registered successfully']);
         } elseif ($action == 'login') {
-            $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
-            $stmt->execute([$username]);
+            $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
+            $stmt->execute([$email]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($user && password_verify($password, $user['password'])) {
                 $payload = [
-                    'username' => $username,
+                    'email' => $email,
                     'exp' => time() + 3600 // Token expires in 1 hour
                 ];
                 $token = JWT::encode($payload, $jwtSecret, 'HS256');
                 echo json_encode(['token' => $token]);
             } else {
-                echo json_encode(['error' => 'Invalid username or password']);
+                echo json_encode(['error' => 'Invalid email or password']);
             }
         }
     }
