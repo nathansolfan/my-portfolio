@@ -47,6 +47,11 @@ export default function Header() {
             Box
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to="/carpooling" className="nav-link">
+            Car Pooling
+          </Link>
+        </li>
       </ul>
       <div className="account-action">
         <button onClick={toggleDropdown} className="header-button">

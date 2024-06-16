@@ -9,6 +9,7 @@ import "./index.css";
 import BoxSizing from "./components/molecule/BoxSizing";
 import AIChat from "./components/AI/AIChat";
 import Register from "./components/Auth/Register";
+import CarPooling from "./components/CarPooling/CarPooling";
 
 function App() {
   return (
@@ -25,8 +26,9 @@ function App() {
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/box" element={<BoxSizing />} />
           <Route path="/aichat" element={<AIChat />} />
-          <Route path="/register" element={<Register />} />{" "}
-          {/* Add Register route */}
+          <Route path="/register" element={<Register />} />
+          <Route path="/carpooling" element={<CarPooling />} />{" "}
+          {/* Add CarPooling route */} {/* Add Register route */}
         </Routes>
 
         <footer>Footer</footer>
