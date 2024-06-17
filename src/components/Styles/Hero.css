@@ -5,20 +5,26 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: url('../../images/deep.jpg') center/cover no-repeat;
+  background: url('../../images/bggimg.jpg') no-repeat center center;
+  background-size: cover;
   padding: 20px;
   box-sizing: border-box;
   position: relative;
   width: 100%;
   overflow: hidden; /* Ensures no overflow of background image */
-  
 }
-/* clip-path: polygon(30% 0, 82% 2%, 73% 32%, 96% 71%, 92% 97%, 50% 100%, 30% 86%, 3% 95%, 11% 47%, 4% 17%); */
 
 .hero-items {
   z-index: 2;
   max-width: 100%; /* Responsive max-width */
   text-align: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for better visibility */
+  transition: transform 0.3s ease; /* Smooth transition */
+  position: absolute; /* Ensure the element is positioned absolutely */
+  cursor: grab;
 }
 
 .hero-button {
@@ -46,15 +52,12 @@ p:hover {
 }
 
 .hero-items:active {
-  cursor: grabbing;  
+  cursor: grabbing;
 }
-
-
 
 .hero-container:hover .hero-items {
   transform: scale(1.05); /* Slightly enlarges the items on hover */
 }
-
 
 @media (max-width: 768px) {
   .hero-container {
