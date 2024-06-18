@@ -22,9 +22,12 @@
   background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
   border-radius: 10px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for better visibility */
-  transition: transform 0.3s ease; /* Smooth transition */
-  position: absolute; /* Ensure the element is positioned absolutely */
+  position: fixed; /* Changed from absolute to fixed for better performance */
   cursor: grab;
+}
+
+.hero-items.dragging {
+  transition: none; /* Disable transition during dragging */
 }
 
 .hero-button {
@@ -55,7 +58,7 @@ p:hover {
   cursor: grabbing;
 }
 
-.hero-container:hover .hero-items {
+.hero-container:hover .hero-items:not(.dragging) {
   transform: scale(1.05); /* Slightly enlarges the items on hover */
 }
 
