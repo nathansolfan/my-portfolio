@@ -22,12 +22,46 @@
   background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
   border-radius: 10px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for better visibility */
-  position: fixed; /* Changed from absolute to fixed for better performance */
+  position: fixed; /* Ensure the element is positioned fixed */
   cursor: grab;
+  transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
 }
 
 .hero-items.dragging {
   transition: none; /* Disable transition during dragging */
+}
+
+.hero-items.minimized {
+  width: 80px; /* Smaller width */
+  height: 80px; /* Smaller height */
+  opacity: 0.7;
+  transform: scale(0.7); /* Scale down the size */
+  overflow: hidden; /* Hide overflowing content */
+  border-radius: 50%; /* Circle shape for minimized state */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-items:not(.minimized) {
+  width: auto;
+  height: auto;
+  opacity: 1;
+  transform: scale(1); /* Scale back to normal size */
+}
+
+.hero-content {
+  transition: opacity 0.3s, transform 0.3s; /* Smooth transition for content */
+}
+
+.hero-content.minimized {
+  opacity: 0;
+  transform: scale(0); /* Hide content when minimized */
+}
+
+.hero-content:not(.minimized) {
+  opacity: 1;
+  transform: scale(1); /* Show content when not minimized */
 }
 
 .hero-button {
@@ -58,7 +92,7 @@ p:hover {
   cursor: grabbing;
 }
 
-.hero-container:hover .hero-items:not(.dragging) {
+.hero-container:hover .hero-items:not(.dragging):not(.minimized) {
   transform: scale(1.05); /* Slightly enlarges the items on hover */
 }
 
