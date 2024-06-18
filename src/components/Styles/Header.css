@@ -1,80 +1,68 @@
+/* Header.css */
 .header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 5px 15px; /* Increased side padding for better spacing */
-  background-color: transparent;
-  min-height: 50px; /* Ensures a consistent height */
-  align-items: center; /* Centers items vertically */
-  transition: all 0.3s ease;
+  justify-content: center; /* Center the nav-list horizontally */
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.1); /* Semi-transparent background */
+  color: white;
+  z-index: 10; /* Ensure it is on top of other elements */
 }
 
-
-.nav-list {  
+.nav-list {
   display: flex;
   justify-content: center; /* Centers navigation items */
   list-style: none;
-  flex-grow: 1; /* Allows it to expand and push account actions to the right */
-  margin: 10px; /* Removes default margin */
-  padding: 0; /* Removes default padding */
+  padding: 0;
+  margin: 0;
 }
 
 .nav-item {
-  padding: 0 10px;
+  margin: 0 15px; /* Adjust spacing between nav items */
 }
 
 .nav-link {
   color: white;
   text-decoration: none;
-  display: block; /* Makes the entire area clickable */
-  padding: 10px 5px; /* Larger area for easier touch */
+  transition: color 0.3s ease;
 }
 
-.nav-link:hover, .nav-link:focus {
-  background-color: rgba(255, 255, 255, 0.2); /* Subtle hover effect */
-}
-
-
-
-@media (max-width: 768px) {
-  .nav-list {
-    flex-direction: row; /* Stacks items vertically */
-    align-items: center; /* Center align items when stacked */
-    padding: 0;
-    
-  }
-
-  .nav-item {
-    padding: 10px;
-  }
-}
-
-.account-action {
-  display: flex;
-  justify-content: end;
+.nav-link:hover {
+  color: #ffdd00;
 }
 
 .header-button {
-  margin-top: 5px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #28a745;
-  color: white;
+  background: none;
   border: none;
-  border-radius: 5px;
+  color: white;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 .dropdown-menu {
   display: none;
   position: absolute;
+  top: 60px;
   right: 20px;
-  background-color: #007bff;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  z-index: 1;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .dropdown-menu.show {
   display: block;
+}
+
+.dropdown-menu .nav-link {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.account-action {
+  position: absolute;
+  right: 20px; /* Adjust the position to the right */
 }
