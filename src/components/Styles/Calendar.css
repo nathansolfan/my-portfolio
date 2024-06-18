@@ -22,7 +22,8 @@
 }
 
 .calendar-nav button {
-  padding: 0.5rem 1rem; /* Smaller padding */
+  width: 50%;
+  padding: 0.5rem 1.5rem; /* Smaller padding */
   font-size: 0.9rem; /* Smaller font size */
   background-color: #007bff;
   color: white;
@@ -37,6 +38,7 @@
 }
 
 .month-year {
+  
   font-size: 1.4rem; /* Slightly smaller for consistency */
   color: #333;
 }

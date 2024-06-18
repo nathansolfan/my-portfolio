@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "../Styles/Register.css";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -31,10 +32,10 @@ export default function Register() {
   };
 
   return (
-    <div>
+    <div className="register-container">
       <h2>Register</h2>
       <form onSubmit={handleRegister}>
-        <div>
+        <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
             type="text"
@@ -45,7 +46,7 @@ export default function Register() {
           />
         </div>
 
-        <div>
+        <div className="form-group">
           <label htmlFor="password">Password:</label>
           <input
             type="text"
