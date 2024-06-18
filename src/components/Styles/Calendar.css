@@ -1,5 +1,6 @@
 /* Global styles for the calendar */
 .calendar-container {
+  
   text-align: center;
   padding: 1rem;
   background-color: rgba(248, 248, 248, 0.85); /* More opacity for better readability */
@@ -8,6 +9,8 @@
   width: 85%;
   max-width: 500px;
   margin: 40px auto; /* Adjusted for better vertical spacing */
+  
+
 }
 
 .calendar-nav {
