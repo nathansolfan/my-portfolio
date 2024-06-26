@@ -7,6 +7,9 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    try {
+    } catch () {}
   };
 
   return <div>Login</div>;
