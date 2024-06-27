@@ -10,7 +10,13 @@ export default function Login() {
 
     try {
     } catch () {}
+
+    
   };
 
-  return <div>Login</div>;
+  return <div>
+    <h2>
+      <p></p>
+    </h2>
+  </div>;
 }
