@@ -9,14 +9,19 @@ export default function Login() {
     e.preventDefault();
 
     try {
+
+      const response = await axios.post("http://localhost:8080/ath.php", {
+        action: "login",
+        email,
+        password,
+      })
+
     } catch () {}
 
     
   };
 
   return <div>
-    <h2>
-      <p></p>
-    </h2>
+    
   </div>;
 }
