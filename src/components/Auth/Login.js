@@ -9,19 +9,25 @@ export default function Login() {
     e.preventDefault();
 
     try {
-
       const response = await axios.post("http://localhost:8080/ath.php", {
         action: "login",
         email,
         password,
-      })
+      });
 
-    } catch () {}
-
-    
+      if (response.data.token) {
+        setMessage("Login successful!");
+        setError("");
+        localStorage.setItem("token", response.data.token);
+      } else {
+        setError(response.data.error || "Login failed");
+        setMessage("");
+      }
+    } catch (error) {
+      setError("Failed to login");
+      setMessage("");
+    }
   };
 
-  return <div>
-    
-  </div>;
+  return <div></div>;
 }
