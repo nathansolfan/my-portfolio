@@ -43,7 +43,7 @@ export default function EmailInput() {
   };
 
   return (
-    <div className="list-container">
+    <div className="main-content list-container">
       <form
         className="email-container"
         onSubmit={(e) => {
