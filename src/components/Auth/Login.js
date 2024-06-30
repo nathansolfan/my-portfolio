@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
+import "../Styles/Register.css"; // Use the same CSS as Register for simplicity
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,7 +12,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8080/ath.php", {
+      const response = await axios.post("http://localhost:8080/auth.php", {
         action: "login",
         email,
         password,
@@ -30,5 +32,35 @@ export default function Login() {
     }
   };
 
-  return <div></div>;
+  return (
+    <div className="register-container">
+      <h2>Login</h2>
+      <form onSubmit={handleLogin}>
+        <div className="form-group">
+          <label htmlFor="email">Email:</label>
+          <input
+            type="text"
+            id="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+      {message && <p className="success-message">{message}</p>}
+      {error && <p className="error-message">{error}</p>}
+    </div>
+  );
 }
