@@ -47,6 +47,19 @@ const CarPooling = () => {
     }
   };
 
+  const handlePostcodeSearch = async () => {
+    const apiKey = "YOUR_OPENCAGE_API_KEY"; // Replace with your OpenCage API key
+    const url = `https://api.opencagedata.com/geocode/v1/json?q=${postcode}&key=${apiKey}`;
+
+    try {
+      const response = await axios.get(url);
+      const { lat, lng } = response.data.results[0].geometry;
+      setCenter({ lat, lng });
+    } catch (error) {
+      console.error("Failed to fetch coordinates for postcode", error);
+    }
+  };
+
   return (
     <div>
       <h2>Car Pooling Price Calculator</h2>
