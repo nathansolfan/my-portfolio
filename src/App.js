@@ -15,8 +15,6 @@ import CarPooling from "./components/CarPooling/CarPooling";
 function App() {
   return (
     <Router>
-      {" "}
-      {/* Router should wrap all components that use routing */}
       <div className="App">
         <Header />
         <Routes>
@@ -29,10 +27,8 @@ function App() {
           <Route path="/aichat" element={<AIChat />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/carpooling" element={<CarPooling />} />{" "}
-          {/* Add CarPooling route */} {/* Add Register route */}
+          <Route path="/carpooling" element={<CarPooling />} />
         </Routes>
-
         <footer>Footer</footer>
       </div>
     </Router>
