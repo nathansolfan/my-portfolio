@@ -1,9 +1,17 @@
-.about-cointaner {
-    float: left;
-    width: 600px;
-    height: 600px;
-    margin: 20px;
-    shape-outside: circle(50% at 30%);
-    clip-path: circle(50% at 0%);
-    background: lightblue;
+body {
+    margin: 0;
+}
+
+.parent-about{
+    background-color: white;
+    padding: 50px;
+    margin: 0 auto;
+
+    width: 100%;
+}
+
+.child-about{
+    background-color: aqua;
+    margin: 0 aut;
+    padding: 5rem;
 }
