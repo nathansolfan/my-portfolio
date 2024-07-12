@@ -1,44 +1,24 @@
-/* Global styles for the calendar */
-.calendar-container {
-  
+*{
+  box-sizing: border-box;
+}
+
+.calendar-container{
   text-align: center;
-  padding: 1rem;
-  background-color: rgba(248, 248, 248, 0.85); /* More opacity for better readability */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Lighter shadow for a softer look */
-  width: 85%;
-  max-width: 500px;
-  margin: 40px auto; /* Adjusted for better vertical spacing */
-  
+  width: 50%;  
+  margin: 120px auto auto auto;
+}
+
+.calendar-box {
 
 }
 
-.calendar-nav {
-  
-  margin-bottom: 20px; /* Reduced for tighter layout */
+.calendar-nav {    
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.calendar-nav button {
-  width: 50%;
-  padding: 0.5rem 1.5rem; /* Smaller padding */
-  font-size: 0.9rem; /* Smaller font size */
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.calendar-nav button:hover {
-  background-color: #0056b3;
-}
-
-.month-year {
-  
+.month-year {    
   font-size: 1.4rem; /* Slightly smaller for consistency */
   color: #333;
 }
@@ -50,14 +30,7 @@
 }
 
 .calendar-day {
-  padding: 8px; /* Reduced padding for more space */
-  background-color: #fff;
-  border: 1px solid #ddd;
-  min-height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s ease;
+ 
 }
 
 .calendar-day:hover {
@@ -68,65 +41,4 @@
 .calendar-day.selected-day {
   background-color: #ff8c00;
   color: white;
-}
-
-
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .calendar-container {
-    max-width: 100%;
-    padding: 15px;
-  }
-
-  .month-year, .calendar-nav button {
-    font-size: 0.85rem;
-  }
-
-  .calendar-grid {
-    grid-template-columns: repeat(7, 1fr);
-  }
-
-  .calendar-day {
-    padding: 6px;
-    font-size: 0.75rem;
-  }
-
-  .contact-info input, .comments-section textarea, .time-slot {
-    font-size: 0.9rem;
-  }
-}
-
-.contact-info, .comments-section {
-  margin-top: 20px;
-  padding: 25px;
-  background-color: #f4f4f4;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.contact-info input, .comments-section textarea {
-  width: 85%;
-  padding: 12.5px;
-  margin-top: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-/* Button Styles */
-.calendar-button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.calendar-button:hover {
-  background-color: #218838;
 }

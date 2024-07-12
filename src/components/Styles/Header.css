@@ -5,6 +5,8 @@
 @media only screen and (max-width: 63.9375rem) {
   body.cs-open {
     overflow: hidden;
+    
+    
   }
   #cs-navigation {
     width: 100%;
@@ -14,6 +16,8 @@
     background-color: #fff;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     position: fixed;
+    top: 0;
+
     z-index: 10000;
   }
   #cs-navigation:before {
@@ -244,16 +248,18 @@
 <--- -------------------------- -*/
 /* Small Desktop - 1024px */
 @media only screen and (min-width: 64rem) {
-  #cs-navigation {
-    width: 100%;
-    /* prevents padding and border from affecting height and width */
-    box-sizing: border-box;
-    padding: 0 1rem;
-    background-color: #fff;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    position: fixed;
-    z-index: 10000;
-  }
+  /* Header Styles */
+#cs-navigation {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  background-color: #fff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  position: fixed;
+  top: 0;
+  z-index: 10000;
+}
+
   #cs-navigation .cs-container {
     width: 100%;
     max-width: 80rem;
@@ -263,6 +269,7 @@
     align-items: center;
     gap: 1.5rem;
   }
+  
   #cs-navigation .cs-toggle {
     display: none;
   }

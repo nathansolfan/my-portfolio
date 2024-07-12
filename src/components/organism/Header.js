@@ -16,7 +16,7 @@ const Header = () => {
     { href: "/", text: "Home", active: true },
     { href: "/about", text: "About" },
     { href: "/services", text: "Services" },
-    { href: "/about-us", text: "About Us" },
+    { href: "/calendar", text: "Calendar" },
     { href: "/faq", text: "FAQ" },
   ];
 
@@ -37,6 +37,7 @@ const Header = () => {
           <button
             className="cs-toggle"
             aria-label="mobile menu toggle"
+            aria-expanded={menuActive}
             onClick={toggleMenu}
           >
             <div className="cs-box" aria-hidden="true">
@@ -53,7 +54,6 @@ const Header = () => {
             <ul
               id="cs-expanded"
               className={`cs-ul ${menuActive ? "show" : ""}`}
-              aria-expanded={menuActive}
             >
               {navItems.map((item, index) => (
                 <li key={index} className="cs-li">
