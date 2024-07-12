@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+  }
+  
+.section-container {
+    display: flex;
+  
+    justify-content: center;
+    padding: 20px;
+    gap: 25px;
+}
+
+.section-box {
+    width: calc(25% - 40px); /* Adjust width minus the gap */ 
+    cursor: pointer;  
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    transition: transform 0.3s ease;
+}
+
+.section-box a {
+    display: block;
+    padding: 20px;
+    color: #333;
+    text-decoration: none;
+    height: 100%;
+}
+
+.img-div {
+    height: 200px; /* Fixed height for all image divs */
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px; /* Placeholder font size */
+}
+
+.img-div img {
+    width: 100%;  /* Ensures the image scales with its container */
+    height: auto; /* Maintains the aspect ratio */
+    object-fit: cover; /* Covers the area of the div without stretching the image */
+}
+
+
+
+
+.section-box:hover {
+    transform: translateY(-10px); /* Moves the card up slightly on hover */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Adds shadow for depth */
+}
+
+@media (max-width: 768px) {
+    .section-box a {
+        padding: 15px;  /* Less padding on smaller screens */
+    }
+    .img-div {
+        height: 150px;  /* Smaller height for the image div on smaller screens */
+    }
+}
+
