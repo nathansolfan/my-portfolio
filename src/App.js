@@ -29,7 +29,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/carpooling" element={<CarPooling />} />
         </Routes>
-        <footer>Footer</footer>
       </div>
     </Router>
   );

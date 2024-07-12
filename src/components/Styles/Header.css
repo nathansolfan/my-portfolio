@@ -1,8 +1,7 @@
-/* Header.css */
-.header { 
-  
+/* Base styles for the header */
+.header {
   display: flex;
-  justify-content: space-between; /* Distributes space evenly between nav-list and account-action */
+  justify-content: space-between;
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
@@ -13,7 +12,7 @@
 
 .nav-list {
   display: flex;
-  justify-content: center; /* Centers navigation items */
+  justify-content: center;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -25,7 +24,7 @@
 }
 
 .nav-link {
-  color: white;
+  color: black;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -62,6 +61,70 @@
 
 .account-action {
   display: flex;
-  justify-content: flex-end; /* Align the account actions to the right */
+  justify-content: flex-end;
   position: relative;
+}
+
+/* Mobile styles */
+@media only screen and (max-width: 48rem) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-item {
+    margin: 10px 0;
+  }
+
+  .account-action {
+    justify-content: center;
+    margin-top: 20px;
+  }
+}
+
+/* Tablet styles */
+@media only screen and (min-width: 48rem) and (max-width: 63.9375rem) {
+  .header {
+    flex-direction: row;
+    text-align: center;
+  }
+
+  .nav-list {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .nav-item {
+    margin: 0 15px;
+  }
+
+  .account-action {
+    justify-content: flex-end;
+    margin-top: 0;
+  }
+}
+
+/* Desktop styles */
+@media only screen and (min-width: 64rem) {
+  .header {
+    flex-direction: row;
+  }
+
+  .nav-list {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .nav-item {
+    margin: 0 15px;
+  }
+
+  .account-action {
+    justify-content: flex-end;
+  }
 }
