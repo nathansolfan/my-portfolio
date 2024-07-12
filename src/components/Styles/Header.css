@@ -5,8 +5,8 @@
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
-  background: rgba(0, 0, 0, 0.1); /* Semi-transparent background */
-  color: white;
+  background: white; /* Ensure the background is white */
+  color: black; /* Ensure text color is black */
   z-index: 10; /* Ensure it is on top of other elements */
 }
 
@@ -24,20 +24,35 @@
 }
 
 .nav-link {
-  color: black;
+  color: black; /* Ensure navigation items are black */
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .nav-link:hover {
-  color: #ffdd00;
+  color: var(--primary); /* Use primary color on hover */
 }
 
 .header-button {
   background: none;
   border: none;
-  color: white;
+  color: black; /* Ensure button icon is black */
   cursor: pointer;
+  display: none; /* Hide the button by default */
+}
+
+.cs-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 24px;
+  height: 24px;
+}
+
+.cs-line {
+  width: 100%;
+  height: 2px;
+  background-color: black; /* Ensure the lines are black */
 }
 
 .dropdown-menu {
@@ -57,16 +72,22 @@
 .dropdown-menu .nav-link {
   display: block;
   margin-bottom: 5px;
+  color: white; /* Ensure dropdown items are white */
 }
 
 .account-action {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-end; /* Align the account actions to the right */
   position: relative;
+  color: black; /* Ensure account action text is black */
 }
 
 /* Mobile styles */
 @media only screen and (max-width: 48rem) {
+  .header-button {
+    display: block; /* Show the button on small screens */
+  }
+
   .header {
     flex-direction: column;
     text-align: center;
@@ -75,6 +96,21 @@
   .nav-list {
     flex-direction: column;
     align-items: center;
+    background: black; /* Ensure the background is black */
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    display: none;
+    z-index: 100;
+  }
+
+  .nav-list.show {
+    display: flex;
+  }
+
+  .nav-link {
+    color: white; /* Ensure navigation items are white */
   }
 
   .nav-item {
@@ -126,5 +162,17 @@
 
   .account-action {
     justify-content: flex-end;
+  }
+
+  .header-button {
+    display: none; /* Hide the button on larger screens */
+  }
+
+  .nav-list.show {
+    display: flex; /* Ensure the nav-list is flex on larger screens */
+  }
+
+  .nav-link {
+    color: black; /* Ensure navigation items are black */
   }
 }
