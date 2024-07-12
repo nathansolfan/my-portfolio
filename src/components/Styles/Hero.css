@@ -109,7 +109,7 @@
     font-weight: 700;
     text-align: center;
     margin: 0;
-    color: #1a1a1a;
+    color: #000000;
     min-width: 12.5rem;
     padding: 0 1.5rem;
     background-color: var(--primary);
@@ -125,7 +125,7 @@
     position: absolute;
     height: 100%;
     width: 0%;
-    background: #000;
+    background: #df8b0e;
     opacity: 1;
     top: 0;
     left: 0;
