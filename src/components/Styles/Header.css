@@ -1,6 +1,6 @@
 /* Header.css */
 .header { 
-  width: 100%;
+  
   display: flex;
   justify-content: space-between; /* Distributes space evenly between nav-list and account-action */
   align-items: center;
