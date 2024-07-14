@@ -11,6 +11,7 @@ import AIChat from "./components/AI/AIChat";
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import CarPooling from "./components/CarPooling/CarPooling";
+import Footer from "./components/organism/Footer";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/carpooling" element={<CarPooling />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );

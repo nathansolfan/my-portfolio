@@ -85,7 +85,6 @@ export default function Calendar() {
 
   return (
     <div className="calendar-container">
-      {/* <img src={car} alt="Background" className="background-image" /> */}
       <div className="calendar-box">
         <div className="calendar-nav">
           <button onClick={handlePrevMonth}>Prev</button>
@@ -121,11 +120,12 @@ export default function Calendar() {
             <h3>Pick-Up Time:</h3>
             <TimePicker pickupTime={pickupTime} setPickupTime={setPickupTime} />
           </div>
-          <div>
-            <h3>Pick-Up Location</h3>
+          <div className="location-container">
+            <h3 className="location-label">Pick-Up Location</h3>
             <input
               type="text"
               name="pickupLocation"
+              className="location-input"
               placeholder="Pick up Location"
               value={locations.pickupLocation}
               onChange={(e) =>
@@ -133,8 +133,18 @@ export default function Calendar() {
               }
             />
           </div>
-          <div>
-            <h3>Drop-Up Location</h3>
+          <div className="location-container">
+            <h3 className="location-label">Drop-Up Location</h3>
+            <input
+              type="text"
+              name="dropoffLocation"
+              className="location-input"
+              placeholder="Drop up Location"
+              value={locations.dropoffLocation}
+              onChange={(e) =>
+                setLocations({ ...locations, [e.target.name]: e.target.value })
+              }
+            />
           </div>
           <div className="contact-info">
             <input
@@ -143,6 +153,7 @@ export default function Calendar() {
               placeholder="Name"
               value={contactInfo.name}
               onChange={handleContactChange}
+              className="contact-input"
             />
             <input
               type="email"
@@ -150,6 +161,7 @@ export default function Calendar() {
               placeholder="Email"
               value={contactInfo.email}
               onChange={handleContactChange}
+              className="contact-input"
             />
             <input
               type="tel"
@@ -157,10 +169,12 @@ export default function Calendar() {
               placeholder="Phone Number"
               value={contactInfo.phone}
               onChange={handleContactChange}
+              className="contact-input"
             />
           </div>
           <div className="comments-section">
             <textarea
+              className="comments-textarea"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
               placeholder="Add any special requests or comments here..."

@@ -1,25 +1,28 @@
-*{
+* {
   box-sizing: border-box;
 }
 
-.calendar-container{
+.calendar-container {
   text-align: center;
-  width: 50%;  
+  width: 50%;
   margin: 120px auto auto auto;
 }
 
 .calendar-box {
-
+  padding: 1rem;
+  background-color: rgba(248, 248, 248, 0.85);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.calendar-nav {    
+.calendar-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 0.5em 
+  padding-bottom: 0.5em;
 }
 
-.month-year {    
+.month-year {
   font-size: 1rem; /* Slightly smaller for consistency */
   color: #333;
   padding: 0.5em;
@@ -37,7 +40,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
- 
 }
 
 .calendar-day:hover {
@@ -54,6 +56,118 @@
 
 .grid-time {
   width: 100%;
-  
+}
 
+/* Location CSS */
+.location-container {
+  width: 60%;
+  margin: 1rem auto;
+  padding: 1rem;
+  background-color: rgba(248, 248, 248, 0.85);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.location-label {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  width: 100%;
+}
+
+.location-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.33rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  text-align: left;
+  margin-top: 0.5rem;
+}
+
+.location-input:hover,
+.location-input:focus {
+  border-color: #ff8c00;
+  outline: none;
+}
+
+/* Contact Info CSS */
+.contact-info {
+  width: 60%;
+  margin: 1rem auto;
+  padding: 1rem;
+  background-color: rgba(248, 248, 248, 0.85);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.33rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  text-align: left;
+  margin-top: 0.5rem;
+}
+
+.contact-input:hover,
+.contact-input:focus {
+  border-color: #ff8c00;
+  outline: none;
+}
+
+/* Comments Section CSS */
+.comments-section {
+  width: 60%;
+  margin: 1rem auto;
+  padding: 1rem;
+  background-color: rgba(248, 248, 248, 0.85);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comments-textarea {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.33rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  text-align: left;
+  margin-top: 0.5rem;
+}
+
+.comments-textarea:hover,
+.comments-textarea:focus {
+  border-color: #ff8c00;
+  outline: none;
+}
+
+/* Button Styles */
+.calendar-button {
+  width: 15%;
+  font-size: 1rem;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.calendar-button:hover {
+  background-color: var(--secondary);
 }
