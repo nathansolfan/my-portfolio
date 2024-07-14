@@ -1,5 +1,4 @@
 <?php
-
 require __DIR__ . '/../vendor/autoload.php';
 
 use Dotenv\Dotenv;
@@ -13,9 +12,13 @@ if (file_exists($envFilePath)) {
 }
 
 $jwtSecret = getenv('JWT_SECRET');
+if (!$jwtSecret) {
+    echo json_encode(['error' => 'JWT secret not found in environment']);
+    exit;
+}
 
 header("Content-Type: application/json");
-header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
@@ -33,7 +36,7 @@ try {
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($data['action'])) {
         $action = $data['action'];
-        $email = $data['email']; // Changed from username to email
+        $email = $data['email'];
         $password = $data['password'];
 
         if ($action == 'register') {
