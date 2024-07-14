@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import DateSelector from "./DateSelector";
 import "../Styles/Booking.css";
 import DeleteBooking from "./DeleteBooking";

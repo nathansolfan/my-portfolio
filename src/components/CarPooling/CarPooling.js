@@ -19,7 +19,6 @@ const CarPooling = () => {
   const [price, setPrice] = useState(basePrice);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [center, setCenter] = useState(initialCenter);
-  const [postcode, setPostcode] = useState("");
 
   const addPassenger = (location) => {
     setPassengers([...passengers, location]);
@@ -44,19 +43,6 @@ const CarPooling = () => {
     if (selectedLocation) {
       addPassenger(selectedLocation);
       setSelectedLocation(null);
-    }
-  };
-
-  const handlePostcodeSearch = async () => {
-    const apiKey = "YOUR_OPENCAGE_API_KEY"; // Replace with your OpenCage API key
-    const url = `https://api.opencagedata.com/geocode/v1/json?q=${postcode}&key=${apiKey}`;
-
-    try {
-      const response = await axios.get(url);
-      const { lat, lng } = response.data.results[0].geometry;
-      setCenter({ lat, lng });
-    } catch (error) {
-      console.error("Failed to fetch coordinates for postcode", error);
     }
   };
 

@@ -7,12 +7,11 @@ import EmailInput from "./components/organism/EmailInput";
 import Logo from "./components/organism/Logo";
 import "./index.css";
 import BoxSizing from "./components/molecule/BoxSizing";
-import AIChat from "./components/AI/AIChat";
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import CarPooling from "./components/CarPooling/CarPooling";
 import Footer from "./components/organism/Footer";
-import SideBySide from "./components/organism/SideBySide";
+// import SideBySide from "./components/organism/SideBySide"; // Remove unused import
 
 function App() {
   return (
@@ -26,7 +25,7 @@ function App() {
           <Route path="/find-booking" element={<EmailInput />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/box" element={<BoxSizing />} />
-          <Route path="/aichat" element={<AIChat />} />
+          {/* <Route path="/aichat" element={<AIChat />} /> */}
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/carpooling" element={<CarPooling />} />
