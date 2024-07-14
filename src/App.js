@@ -12,6 +12,7 @@ import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import CarPooling from "./components/CarPooling/CarPooling";
 import Footer from "./components/organism/Footer";
+import SideBySide from "./components/organism/SideBySide";
 
 function App() {
   return (

@@ -1,6 +1,7 @@
 import React from "react";
 import "../Styles/Hero.css";
 import Cards from "../molecule/Cards";
+import SideBySide from "./SideBySide";
 
 export default function Hero() {
   return (
@@ -49,6 +50,7 @@ export default function Hero() {
         </picture>
       </section>
       <Cards />
+      <SideBySide />
     </div>
   );
 }

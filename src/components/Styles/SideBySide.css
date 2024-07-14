@@ -1,0 +1,56 @@
+/* Side By Side Styles */
+
+#RPsbs-414, #RPsbsr-414 {
+    padding: 2rem 1rem;
+  }
+  
+  .cs-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .cs-content {
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+  
+  .cs-topper {
+    font-size: 1.2rem;
+    color: #ff8c00;
+  }
+  
+  .cs-title {
+    font-size: 2rem;
+    margin: 0.5rem 0;
+  }
+  
+  .cs-text {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .cs-button-solid {
+    background-color: #ff8c00;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 0.5rem;
+  }
+  
+  .cs-image-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .cs-picture {
+    flex: 1;
+  }
+  
+  .cs-picture img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+  

@@ -6,7 +6,7 @@ const Footer = () => {
     <footer id="footer-1390">
       <div className="cs-container">
         <div className="cs-top">
-          <a aria-label="go back to home" className="cs-logo" href="/">
+          {/* <a aria-label="go back to home" className="cs-logo" href="/">
             <img
               className="cs-logo-img"
               loading="lazy"
@@ -16,7 +16,7 @@ const Footer = () => {
               width="209"
               height="40"
             />
-          </a>
+          </a> */}
           <ul className="cs-ul">
             <li className="cs-li">
               <a href="/" className="cs-link">
