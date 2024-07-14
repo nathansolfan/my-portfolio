@@ -30,6 +30,11 @@
 }
 
 .calendar-day {
+  border: 1px solid #ddd;
+  min-height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
  
 }
 
