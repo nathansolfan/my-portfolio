@@ -16,11 +16,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 0.5em 
 }
 
 .month-year {    
-  font-size: 1.4rem; /* Slightly smaller for consistency */
+  font-size: 1rem; /* Slightly smaller for consistency */
   color: #333;
+  padding: 0.5em;
 }
 
 .calendar-grid {
@@ -46,4 +48,12 @@
 .calendar-day.selected-day {
   background-color: #ff8c00;
   color: white;
+}
+
+/* SELECTED DAY BOX */
+
+.grid-time {
+  width: 100%;
+  
+
 }

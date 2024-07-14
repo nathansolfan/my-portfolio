@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import "../Styles/TimerPicker.css";
-
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css"; // Import Flatpickr CSS
 
@@ -19,9 +18,16 @@ export default function TimePicker({ pickupTime, setPickupTime }) {
       },
     });
   }, [pickupTime, setPickupTime]);
+
   return (
-    <div>
-      <input ref={timeInputRef} />
+    <div className="time-picker-container">
+      <label className="time-picker-label" htmlFor="timePicker"></label>
+      <input
+        id="timePicker"
+        ref={timeInputRef}
+        className="time-picker-input"
+        placeholder="Select time"
+      />
     </div>
   );
 }
