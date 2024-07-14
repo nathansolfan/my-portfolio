@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../Styles/Calendar.css";
-import car from "../../images/carnr2.webp";
 import supabase from "../../service/supabaseService";
 
 import "flatpickr/dist/flatpickr.min.css";
@@ -66,7 +65,7 @@ export default function Calendar() {
       comments: comment,
     };
 
-    const { data, error } = await supabase.from("calendar").insert([payload]);
+    const { error } = await supabase.from("calendar").insert([payload]);
 
     if (error) {
       alert(

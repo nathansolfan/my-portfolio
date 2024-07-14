@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import axios from "axios";
 
 const containerStyle = {
   width: "100%",
@@ -18,7 +17,7 @@ const CarPooling = () => {
   const [passengers, setPassengers] = useState([]);
   const [price, setPrice] = useState(basePrice);
   const [selectedLocation, setSelectedLocation] = useState(null);
-  const [center, setCenter] = useState(initialCenter);
+  const center = initialCenter;
 
   const addPassenger = (location) => {
     setPassengers([...passengers, location]);

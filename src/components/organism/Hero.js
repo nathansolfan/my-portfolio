@@ -18,12 +18,12 @@ export default function Hero() {
               responsibility, grantmaking, and employee engagement strategies.
             </p>
             <div className="cs-button-group">
-              <a href="" className="cs-button-solid cs-button1">
-                Join Community
-              </a>
-              <a href="" className="cs-button-solid cs-button2">
-                Donate Now
-              </a>
+              <button onClick={() => (window.location.href = "#about")}>
+                About
+              </button>
+              <button onClick={() => (window.location.href = "#services")}>
+                Services
+              </button>
             </div>
           </div>
         </div>
