@@ -62,7 +62,6 @@
   }
   #hero-1426 .cs-topper {
     /* 13px - 16px */
-    font-size: clamp(0.8125rem, 1.5vw, 1rem);
     line-height: 1.2em;
     font-weight: 700;
     letter-spacing: 0.1em;
