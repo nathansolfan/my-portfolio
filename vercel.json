@@ -2,12 +2,12 @@
   "version": 2,
   "builds": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build"
+      "src": "Dockerfile",
+      "use": "@vercel/docker"
     },
     {
-      "src": "api/**/*.php",
-      "use": "@vercel/php@0.5.2"
+      "src": "package.json",
+      "use": "@vercel/static-build"
     }
   ],
   "routes": [
