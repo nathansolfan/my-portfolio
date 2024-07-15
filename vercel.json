@@ -24,10 +24,6 @@
       "dest": "/api/phpinfo.php"
     },
     {
-      "src": "/api/test_env",
-      "dest": "/api/test_env.php"
-    },
-    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
