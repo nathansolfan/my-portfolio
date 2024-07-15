@@ -6,42 +6,26 @@
       "use": "@vercel/static-build"
     },
     {
-      "src": "backend/public/auth.php",
-      "use": "@vercel/php"
-    },
-    {
-      "src": "backend/public/localindex.php",
-      "use": "@vercel/php"
-    },
-    {
-      "src": "backend/public/phpinfo.php",
-      "use": "@vercel/php"
-    },
-    {
-      "src": "backend/public/test_env.php",
-      "use": "@vercel/php"
-    },
-    {
-      "src": "backend/public/index.php",
+      "src": "api/**/*.php",
       "use": "@vercel/php"
     }
   ],
   "routes": [
     {
-      "src": "/auth",
-      "dest": "/backend/public/auth.php"
+      "src": "/api/auth",
+      "dest": "/api/auth.php"
     },
     {
-      "src": "/localindex",
-      "dest": "/backend/public/localindex.php"
+      "src": "/api/localindex",
+      "dest": "/api/localindex.php"
     },
     {
-      "src": "/phpinfo",
-      "dest": "/backend/public/phpinfo.php"
+      "src": "/api/phpinfo",
+      "dest": "/api/phpinfo.php"
     },
     {
-      "src": "/test_env",
-      "dest": "/backend/public/test_env.php"
+      "src": "/api/test_env",
+      "dest": "/api/test_env.php"
     },
     {
       "src": "/(.*)",
